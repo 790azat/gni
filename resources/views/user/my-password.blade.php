@@ -10,7 +10,7 @@
                         <div class="d-flex col-12 gap-3 mb-2">
                             <div class="col">
                                 <label class="col-12">
-                                    Հին գաղտնաբառ
+                                    {{__('Հին գաղտնաբառ')}}
                                     <input type="password" class="form-control" name="password">
                                 </label>
                             </div>
@@ -18,7 +18,7 @@
                         <div class="d-flex col-12 gap-3 mt-2 mb-2">
                             <div class="col">
                                 <label class="col-12">
-                                    Նոր գաղտնաբառ
+                                    {{__('Նոր գաղտնաբառ')}}
                                     <input type="text" class="form-control" name="email">
                                 </label>
                             </div>
@@ -26,13 +26,13 @@
                         <div class="d-flex col-12 gap-3 mb-2">
                             <div class="col">
                                 <label class="col-12">
-                                    Կրկնեք նոր գաղտնաբառը
+                                    {{__('Կրկնեք նոր գաղտնաբառը')}}
                                     <input type="text" class="form-control" name="email">
                                 </label>
                             </div>
                         </div>
                         <div class="d-flex col-12 gap-3 mt-3">
-                            <button class="btn btn-success" type="submit"><i class="fa-solid fa-floppy-disk me-1"></i> Պահպանել</button>
+                            <button class="btn btn-success" type="submit"><i class="fa-solid fa-floppy-disk me-1"></i> {{__('Պահպանել')}}</button>
                         </div>
                     </form>
                 </div>

@@ -7,13 +7,13 @@
     <ul class="nav nav-pills flex-column mb-auto gap-1">
         <li class="nav-item">
             <a href="{{route('welcome')}}" class="nav-link @if(\Illuminate\Support\Facades\Route::currentRouteName() == 'welcome') active @endif" aria-current="page">
-                Բոլորը
+                {{__('Բոլորը')}}
             </a>
         </li>
         @foreach($categories as $category)
             <li class="nav-item">
                 <a href="/category/{{$category->id}}" class="nav-link @if(\Illuminate\Support\Facades\Route::current()->id == $category->id) active @endif" aria-current="page">
-                    {{$category->name}}
+                    {{__($category->name)}}
                 </a>
             </li>
         @endforeach

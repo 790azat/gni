@@ -1,4 +1,4 @@
-<div class="col-12" style="background: linear-gradient(to top,#00b5b5,#00a349)">
+<div class="col-12" style="background: linear-gradient(to top,#00b5b5,#00a349);">
     <div class="col-10 col-sm-8 mx-auto py-3 py-sm-5 d-flex flex-wrap">
         <div class="col-12 col-sm d-flex gap-2 gap-sm-3 align-items-center">
             <div class="col-auto d-flex gap-2 justify-content-center align-items-center">
@@ -24,5 +24,4 @@
             </div>
         </div>
     </div>
-
 </div>

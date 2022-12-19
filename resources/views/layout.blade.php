@@ -17,6 +17,9 @@
     @endif
     @include('components.alert')
     @include('components.header')
+    <div class="col-12">
+        @include('components.snow')
+    </div>
     @yield('content')
     @include('components.scripts')
 

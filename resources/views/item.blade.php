@@ -5,9 +5,9 @@
         <div class="col-12">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-1">
-                    <li class="breadcrumb-item"><a href="{{route('welcome')}}">Գլխավոր</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('welcome')}}">{{__('Գլխավոր')}}</a></li>
                     <li class="breadcrumb-item"><a
-                                href="/category/{{$item->category->id}}">{{$item->category->name}}</a></li>
+                                href="/category/{{$item->category->id}}">{{__($item->category->name)}}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{$item->name}}</li>
                 </ol>
             </nav>
@@ -56,7 +56,7 @@
                 <div class="col-12 d-none d-sm-flex justify-content-center align-items-center">
                     <div class="col d-flex flex-wrap justify-content-center">
                         <div class="col-12 text-center">
-                            <p><i class="fa-regular fa-clock me-1"></i> Ակցիան ուժի մեջ է</p>
+                            <p><i class="fa-regular fa-clock me-1"></i> {{__('Ակցիան ուժի մեջ է')}}</p>
                         </div>
                         <div class="col-12 d-flex gap-2 justify-content-center">
                             <div class="col-auto border rounded-1 p-1">
@@ -72,17 +72,17 @@
                             <p class="text-secondary text-decoration-line-through">{{$item->old_price}}</p>
                         </div>
                         <div class="col-auto">
-                            <p class="text-success">{{$item->new_price}} դր.</p>
+                            <p class="text-success">{{$item->new_price}} {{__('դր.')}}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 d-none d-sm-flex gap-3 justify-content-center align-items-center">
                     <div class="col-auto">
-                        <p>Գնված է: <span class="text-success fw-bold">{{$item->buy_count}}</span></p>
+                        <p>{{__('Գնված է')}}: <span class="text-success fw-bold">{{$item->buy_count}}</span></p>
                     </div>
                     <div class="col-auto">
                         <a href="/buy-item/{{$item->id}}">
-                            <button class="btn btn-success"><i class="fa-solid fa-cart-shopping me-1"></i> Գնել</button>
+                            <button class="btn btn-success"><i class="fa-solid fa-cart-shopping me-1"></i> {{__('Գնել')}}</button>
                         </a>
                     </div>
                 </div>

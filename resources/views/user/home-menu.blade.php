@@ -25,7 +25,7 @@
             <p>{{$user->name}} {{$user->surname}}</p>
         </div>
         <div class="col-12">
-            <p class="text-secondary">Գրանցումը:
+            <p class="text-secondary">{{__('Գրանցումը')}}:
                 <span class="text-dark text-decoration-underline">
                     @if($user->facebook_id !== null) Facebook @elseif($user->google_id !== null) Google @else Gni.am @endif
                 </span>
@@ -59,25 +59,25 @@
     </div>
     <div class="collapse d-sm-flex col-12 gap-1 mt-4 mt-sm-3 flex-wrap justify-content-center align-content-start" id="menu">
         <a href="{{route('home')}}" class="col-12 @if(\Illuminate\Support\Facades\Route::currentRouteName() == 'home') bg-success @else bg-primary @endif bg-gradient  text-center d-flex justify-content-start text-light rounded-2 py-2 px-3">
-            <p style="font-size: 12px" class="text-nowrap"><i class="fa-solid fa-gauge me-1"></i> Գլխավոր</p>
+            <p style="font-size: 12px" class="text-nowrap"><i class="fa-solid fa-gauge me-1"></i> {{__('Գլխավոր')}}</p>
         </a>
         <a href="{{route('my-coupons')}}" class="col-12 @if(\Illuminate\Support\Facades\Route::currentRouteName() == 'my-coupons') bg-success @else bg-primary @endif bg-gradient  text-center d-flex justify-content-start text-light rounded-2 py-2 px-3">
-            <p style="font-size: 12px" class="text-nowrap"><i class="fa-solid fa-hand-holding-heart me-1"></i> Իմ Կուպոնները</p>
+            <p style="font-size: 12px" class="text-nowrap"><i class="fa-solid fa-hand-holding-heart me-1"></i> {{__('Իմ Կուպոնները')}}</p>
         </a>
         <a href="{{route('my-bonuses')}}" class="col-12 @if(\Illuminate\Support\Facades\Route::currentRouteName() == 'my-bonuses') bg-success @else bg-primary @endif bg-gradient  text-center d-flex justify-content-start text-light rounded-2 py-2 px-3">
-            <p style="font-size: 12px" class="text-nowrap"><i class="fa-solid fa-gift me-1"></i> Բոնուսներ</p>
+            <p style="font-size: 12px" class="text-nowrap"><i class="fa-solid fa-gift me-1"></i> {{__('Բոնուսներ')}}</p>
         </a>
         <a href="{{route('my-wallet')}}" class="col-12 @if(\Illuminate\Support\Facades\Route::currentRouteName() == 'my-wallet') bg-success @else bg-primary @endif bg-primary bg-gradient  text-center d-flex justify-content-start text-light rounded-2 py-2 px-3">
-            <p style="font-size: 12px" class="text-nowrap"><i class="fa-solid fa-wallet me-1"></i> Դրամապանակ</p>
+            <p style="font-size: 12px" class="text-nowrap"><i class="fa-solid fa-wallet me-1"></i> {{__('Դրամապանակ')}}</p>
         </a>
         <a href="{{route('my-data')}}" class="col-12 @if(\Illuminate\Support\Facades\Route::currentRouteName() == 'my-data') bg-success @else bg-primary @endif bg-primary bg-gradient  text-center d-flex justify-content-start text-light rounded-2 py-2 px-3">
-            <p style="font-size: 12px" class="text-nowrap"><i class="fa-solid fa-user-tie me-1"></i> Իմ տվյալները</p>
+            <p style="font-size: 12px" class="text-nowrap"><i class="fa-solid fa-user-tie me-1"></i> {{__('Իմ տվյալները')}}</p>
         </a>
         <a href="{{route('my-password')}}" class="col-12 @if(\Illuminate\Support\Facades\Route::currentRouteName() == 'my-password') bg-success @else bg-primary @endif bg-primary bg-gradient  text-center d-flex justify-content-start text-light rounded-2 py-2 px-3">
-            <p style="font-size: 12px" class="text-nowrap"><i class="fa-solid fa-lock me-1"></i> Գաղտնաբառ</p>
+            <p style="font-size: 12px" class="text-nowrap"><i class="fa-solid fa-lock me-1"></i> {{__('Գաղտնաբառ')}}</p>
         </a>
         <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="col-12 bg-primary bg-danger text-center d-flex justify-content-start text-light rounded-2 py-2 px-3">
-            <p style="font-size: 12px" class="text-nowrap"><i class="fa-solid fa-right-from-bracket me-1"></i> Ելք</p>
+            <p style="font-size: 12px" class="text-nowrap"><i class="fa-solid fa-right-from-bracket me-1"></i> {{__('Ելք')}}</p>
         </a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
@@ -99,7 +99,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Ձեր պռոֆիլի նկարը</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{__('Ձեր պռոֆիլի նկարը')}}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                         aria-label="Close"></button>
             </div>
@@ -118,8 +118,8 @@
                     </script>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Փակել</button>
-                <button type="submit" class="btn btn-primary">Ներբեռնել</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('Փակել')}}</button>
+                <button type="submit" class="btn btn-primary">{{__('Ներբեռնել')}}</button>
                 </form>
             </div>
         </div>

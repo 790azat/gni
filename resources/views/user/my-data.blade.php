@@ -10,13 +10,13 @@
                         <div class="d-flex col-12 gap-3 mb-2">
                             <div class="col">
                                 <label class="col-12">
-                                    Անուն
+                                    {{__('Անուն')}}
                                     <input type="text" class="form-control" name="name" value="{{$user->name}}">
                                 </label>
                             </div>
                             <div class="col">
                                 <label class="col-12">
-                                    Ազգանուն
+                                    {{__('Ազգանուն')}}
                                     <input type="text" class="form-control" name="surname" value="{{$user->surname}}">
                                 </label>
                             </div>
@@ -24,13 +24,13 @@
                         <div class="d-flex col-12 gap-3 mb-2">
                             <div class="col">
                                 <label class="col-12">
-                                    Էլ. հասցե
+                                    {{__('Էլ. հասցե')}}
                                     <input type="text" class="form-control" name="email" value="{{$user->email}}">
                                 </label>
                             </div>
                             <div class="col">
                                 <label class="col-12">
-                                    Հեռախոս
+                                    {{__('Հեռախոս')}}
                                     <div class="input-group">
                                         <div class="input-group-text">+374</div>
                                         <input type="tel" minlength="8" maxlength="8" value="{{$user->phone}}" class="form-control">
@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <div class="d-flex col-12 gap-3 mt-3">
-                            <button class="btn btn-success" type="submit"><i class="fa-solid fa-floppy-disk me-1"></i> Պահպանել</button>
+                            <button class="btn btn-success" type="submit"><i class="fa-solid fa-floppy-disk me-1"></i> {{__('Պահպանել')}}</button>
                         </div>
                     </form>
                 </div>

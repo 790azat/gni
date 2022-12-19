@@ -16,22 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
-        $categories = [
-            ['name' => 'Հանգիստ'],
-            ['name' => 'Սնունդ'],
-            ['name' => 'Ժամանց'],
-            ['name' => 'Ծառայություն'],
-            ['name' => 'Գեղեցկություն'],
-            ['name' => 'Առողջություն'],
-            ['name' => 'Ուսում'],
-            ['name' => 'Ապրանքներ'],
-            ['name' => 'Լողավազաններ'],
-            ['name' => 'Քոթեջներ']
-        ];
-
-        Categories::insert($categories);
-
+        $this->call(CategorySeeder::class);
 
         $item = new Items;
 

@@ -18,7 +18,7 @@
                                     <p class="text-truncate">{{$coupon->name}}</p>
                                 </div>
                                 <div class="col-auto">
-                                    <p>Զեղչ: <span
+                                    <p>{{__('Զեղչ')}}: <span
                                             class="text-white bg-success bg-gradient rounded-1 py-0 px-1">{{$coupon->old_price - $coupon->new_price}}</span>
                                     </p>
                                 </div>
@@ -26,7 +26,7 @@
                         </div>
                         <div class="col d-flex flex-column">
                             <div class="col-auto text-center">
-                                Կուպոնը գործում է մինչև
+                                {{__('Կուպոնը գործում է մինչև')}}
                             </div>
                             <div class="col-auto text-center">
                                 {{$coupon->end_time}}
@@ -52,10 +52,10 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Փակել
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('Փակել')}}
                                         </button>
                                         <a href="{{asset('images/qr.png')}}" download="">
-                                            <button type="button" class="btn btn-primary">Ներբեռնել</button>
+                                            <button type="button" class="btn btn-primary">{{__('Ներբեռնել')}}</button>
                                         </a>
                                     </div>
                                 </div>
