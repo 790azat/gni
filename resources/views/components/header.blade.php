@@ -28,18 +28,24 @@
         <div class="d-flex d-sm-none justify-content-center align-items-center me-2">
             <button data-bs-toggle="dropdown" aria-expanded="false" class="btn text-light d-flex justify-content-center align-items-center gap-1 p-2" style="background: #3b3b3b"><i class="fa-solid fa-globe"></i></button>
             <ul class="dropdown-menu dropdown-menu-end bg-dark">
-                <li><a href="locale/en" class="dropdown-item d-flex justify-content-center align-items-center"><img src="{{asset('images/united-states.png')}}" style="width: 25px;height: auto" alt=""></a></li>
-                <li><a href="locale/ru" class="dropdown-item d-flex justify-content-center align-items-center"><img src="{{asset('images/russia.png')}}" style="width: 25px;height: auto" alt=""></a></li>
-                <li><a href="locale/am" class="dropdown-item d-flex justify-content-center align-items-center"><img src="{{asset('images/armenia.png')}}" style="width: 25px;height: auto" alt=""></a></li>
+                @if(Session::get('locale') !== 'en')
+                    <li><a href="locale/en" class="dropdown-item d-flex justify-content-center align-items-center"><img src="{{asset('images/united-states.png')}}" style="width: 25px;height: auto" alt=""></a></li>
+                @endif
+                @if(Session::get('locale') !== 'ru')
+                    <li><a href="locale/ru" class="dropdown-item d-flex justify-content-center align-items-center"><img src="{{asset('images/russia.png')}}" style="width: 25px;height: auto" alt=""></a></li>
+                @endif
+                @if(Session::get('locale') !== 'am')
+                    <li><a href="locale/am" class="dropdown-item d-flex justify-content-center align-items-center"><img src="{{asset('images/armenia.png')}}" style="width: 25px;height: auto" alt=""></a></li>
+                @endif
             </ul>
         </div>
         @guest
             <div class="d-flex justify-content-center align-items-center gap-1 gap-sm-2">
                 <a href="{{ route('login') }}" class="text-hover btn" style="background: #3b3b3b">
-                    <p style="font-size: 13px"><i class="fa-solid fa-right-to-bracket me-1"></i> Մուտք</p>
+                    <p style="font-size: 13px"><i class="fa-solid fa-right-to-bracket me-1"></i> {{__('Մուտք')}}</p>
                 </a>
                 <a href="{{ route('register') }}" class="text-hover btn" style="background: #3b3b3b">
-                    <p style="font-size: 13px"><i class="fa-solid fa-circle-user me-1"></i> Գրանցվել</p>
+                    <p style="font-size: 13px"><i class="fa-solid fa-circle-user me-1"></i> {{__('Գրանցվել')}}</p>
                 </a>
             </div>
         @endguest

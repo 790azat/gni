@@ -12,7 +12,6 @@
     <title>Gni</title>
 </head>
 <body @if(session('alert')) onload="$('.toast').toast('show');" @endif style="background: #309847">
-
     @if(Route::currentRouteName() == 'welcome' or explode('/',Route::current()->uri)[0] == 'category')
         @include('components.sidebar')
     @endif

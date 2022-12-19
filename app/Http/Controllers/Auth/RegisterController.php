@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\InfoBipController;
 use App\Http\Controllers\MailController;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -70,6 +71,7 @@ class RegisterController extends Controller
         $email = $data['email'];
 
         (new \App\Http\Controllers\MailController)->send_mail($email,$code);
+        (new \App\Http\Controllers\InfoBipController)->send($data['phone'],$phone_code);
 
         return User::create([
             'name' => $data['name'],

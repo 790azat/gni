@@ -7,16 +7,16 @@
             </div>
             <div class="col-auto text-center text-sm-start flex-column align-items-center">
                 <p class="d-none d-sm-block fw-bold text-light fs-1" style="font-family: lobster,sans-serif;line-height: initial">Gni</p>
-                <p class="text-light fs-4 ms-3 ms-sm-0">Զեղչերի քարտեր</p>
+                <p class="text-light fs-4 ms-3 ms-sm-0">{{__('Զեղչերի քարտեր')}}</p>
             </div>
         </div>
         <div class="col-12 col-sm d-flex mt-1 mt-sm-3 mt-sm-0">
             <div class="d-flex justify-content-center align-items-center gap-3">
                 <p class="text-light fs-6 d-sm-none text-center text-sm-end">
-                    Գնեք զեղչային կտրոններ և <br class="d-none d-sm-block">քարտեր մեզ մոտ
+                    {{__('Գնեք զեղչային կտրոններ և')}} <br class="d-none d-sm-block">{{__('քարտեր մեզ մոտ')}}
                 </p>
                 <p class="text-light fs-4 d-none d-sm-block text-center text-sm-end">
-                    Գնեք զեղչային կտրոններ և <br class="d-none d-sm-block">քարտեր մեզ մոտ
+                    {{__('Գնեք զեղչային կտրոններ և')}} <br class="d-none d-sm-block">{{__('քարտեր մեզ մոտ')}}
                 </p>
                 <div class="col-2">
                     <img src="{{ asset('images/card.png') }}" style="width: 100%;height: 100%" alt="">

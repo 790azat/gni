@@ -3,7 +3,7 @@
 @section('content')
     <div class="container my-3 my-sm-5">
         <div class="row justify-content-center">
-            <div class="col-11 col-lg-8 shadow d-flex p-0">
+            <div class="col-11 col-lg-8 shadow d-flex p-0 rounded-1 overflow-hidden">
                 <div class="col-5 d-none d-sm-flex">
                     <img src="{{ asset('images/eraz3.jpg') }}" style="filter: contrast(125%);width: 100%;height: 100%;object-fit: cover" alt="">
                 </div>
@@ -11,7 +11,7 @@
                     <form class="col-12" method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="col-12 mb-3 d-flex flex-nowrap align-items-center">
-                            <p class="fs-4 text-nowrap">Մուտք</p>
+                            <p class="fs-4 text-nowrap">{{__('Մուտք')}}</p>
                             <a href="{{route('auth.facebook')}}" target="_blank" class="btn btn-light p-1 ms-auto rounded-circle border d-flex justify-content-center align-content-center" style="width: 40px;height: 40px">
                                 <i class="fa-brands fa-facebook-f d-flex justify-content-center align-items-center text-center align-self-center" style="line-height: inherit;font-size: inherit"></i>
                             </a>
@@ -20,7 +20,7 @@
                             </a>
                         </div>
                         <div class="col-12 mb-1">
-                            <label for="email" class="fw-bold">Էլ. հասցե</label>
+                            <label for="email" class="fw-bold">{{__('Էլ. հասցե')}}</label>
                         </div>
                         <div class="col-12 mb-2">
                             <input id="email" placeholder="Email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -31,7 +31,7 @@
                             @enderror
                         </div>
                         <div class="col-12 mb-1">
-                            <label for="password" class="fw-bold">Ծածկագիր</label>
+                            <label for="password" class="fw-bold">{{__('Ծածկագիր')}}</label>
                         </div>
                         <div class="col-12 mb-3">
                             <input id="password" placeholder="Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -42,7 +42,7 @@
                             @enderror
                         </div>
                         <div class="col-12 mb-3">
-                            <button type="submit" class="btn btn-success col-12">Մուտք</button>
+                            <button type="submit" class="btn btn-success col-12">{{__('Մուտք')}}</button>
                         </div>
                     </form>
                     <a href="{{route('auth.facebook')}}" class="col-12 mb-2">
@@ -58,20 +58,21 @@
                                         <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                     </div>
                                     <label class="form-check-label text-nowrap" for="remember">
-                                        Հիշել ինձ
+                                        {{__('Հիշել ինձ')}}
                                     </label>
                                 </div>
                                 <a href="{{ route('password.request') }}" class="text-hover text-nowrap text-primary">
-                                    Վերականգնվել
+                                    {{__('Վերականգնվել')}}
                                 </a>
                             </div>
                         </div>
                         <div class="col-12 d-flex flex-nowrap justify-content-center gap-2 mb-2">
-                            <p class="text-nowrap">Գրանցված չեք?</p>
-                            <a href="{{ route('register') }}" class="text-hover text-primary text-nowrap">Գրանցվել</a>
+                            <p class="text-nowrap">{{__('Գրանցված չեք?')}}</p>
+                            <a href="{{ route('register') }}" class="text-hover text-primary text-nowrap">{{__('Գրանցվել')}}</a>
                         </div>
                 </div>
             </div>
         </div>
     </div>
+    @include('components.footer')
 @endsection
