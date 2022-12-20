@@ -10,6 +10,11 @@
     @include('other.jivo')
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <title>Gni</title>
+    <style>
+        @font-face {
+            font-display: swap;
+        }
+    </style>
 </head>
 <body @if(session('alert')) onload="$('.toast').toast('show');" @endif style="background: #309847">
     @if(Route::currentRouteName() == 'welcome' or explode('/',Route::current()->uri)[0] == 'category')

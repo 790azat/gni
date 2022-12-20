@@ -2,7 +2,7 @@
     <div class="container d-flex py-3 justify-content-start align-items-center">
         <a href="/" class="gap-2 me-auto">
             <div class="d-flex justify-content-center align-items-center">
-                <img src="{{ asset('images/gni.png') }}" style="width: 40px;height: 40px" alt="">
+                <img src="{{ asset('images/gni.png') }}" style="width: 40px;height: auto" alt="">
             </div>
             <div class="d-flex justify-content-center align-items-center">
                 <p class="fs-4 fw-bold" style="line-height: inherit;font-family: 'Lobster', cursive;">Gni</p>
@@ -51,15 +51,15 @@
         @endguest
         @auth
             <div class="d-flex gap-1 gap-sm-2-2">
-                @if(Auth::user()->is_admin == 0)
+                @if(Auth::user()->is_admin == 0 and Auth::user()->is_super_admin == 0)
                     <div class="d-flex justify-content-center align-items-center gap-2">
                         <a href="{{route('my-wallet')}}"><button class="btn text-light d-flex justify-content-center align-items-center gap-1 text-nowrap" style="background: #3b3b3b;font-size: 13px"><i class="fa-solid fa-wallet me-1"></i> {{Auth::user()->money}} {{__('դր.')}}</button></a>
                     </div>
                 @endif
                 <div class="d-flex justify-content-center align-items-center gap-2">
-                    <button class="btn text-light dropdown-toggle d-flex justify-content-center align-items-center gap-1" style="background: #3b3b3b;font-size: 13px" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user-circle me-1"></i> {{Auth::user()->name}}</button>
+                    <button class="btn text-light dropdown-toggle d-flex justify-content-center align-items-center gap-1" style="background: #3b3b3b;font-size: 13px" data-bs-toggle="dropdown" aria-expanded="false">@if(Auth::user()->is_admin == 1) <i class="fa-solid fa-people-group"></i> @elseif(Auth::user()->is_super_admin == 1) <i class="fa-solid fa-crown"></i> @else <i class="fa-solid fa-user-circle me-1"></i> @endif {{Auth::user()->name}}</button>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item d-flex justify-content-center align-items-center" href="{{route('home')}}">@if(Auth::user()->is_admin == 1)<i class="fa-solid fa-gauge me-1"></i> {{__('Ադմին')}} @else <i class="fa-solid fa-hand-holding-heart me-1"></i> {{__('Իմ կուպոններ')}} @endif</a></li>
+                        <li><a class="dropdown-item d-flex justify-content-center align-items-center" href="{{route('home')}}">@if(Auth::user()->is_admin == 1 or Auth::user()->is_super_admin == 1)<i class="fa-solid fa-gauge me-1"></i> {{__('Ադմին')}} @else <i class="fa-solid fa-hand-holding-heart me-1"></i> {{__('Իմ կուպոններ')}} @endif</a></li>
                         <li class="dropdown-divider"></li>
                         <li><a class="dropdown-item d-flex justify-content-center align-items-center" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa-solid fa-right-from-bracket me-1"></i> {{__('Ելք')}}</a></li>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

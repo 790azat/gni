@@ -22,8 +22,8 @@
         </div>
     </a>
     <!-- Sidebar Toggle-->
-    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+        <i class="fas fa-bars"></i></button>
     <!-- Navbar Search-->
     <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
         <div class="input-group">
@@ -37,7 +37,7 @@
         <div class="d-flex justify-content-center align-items-center gap-2">
             <a class="text-hover btn" style="background: #3b3b3b" href="{{ route('logout') }}"
                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                <p><i class="fa-solid fa-right-from-bracket me-1"></i></i> {{__('Ելք')}}</p>
+                <p><i class="fa-solid fa-right-from-bracket me-1"></i> {{__('Ելք')}}</p>
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
@@ -64,22 +64,22 @@
                     <a class="nav-link @if(Route::currentRouteName() == 'edit-item') bg-primary text-light active @endif"
                        href="{{route('home')}}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-pen"></i></div>
-                        Редактировать
+                        {{__('Խմբագրել')}}
                     </a>
-                    <a class="nav-link @if(Route::currentRouteName() == 'categories') bg-primary text-light active @endif"
-                       href="{{route('categories')}}">
+                    <a class="nav-link @if(Route::currentRouteName() == 'super-categories') bg-primary text-light active @endif"
+                       href="{{route('super-categories')}}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-code-branch"></i></div>
-                        Категории
+                        {{__('Կատեգորիաներ')}}
                     </a>
                     <a class="nav-link @if(Route::currentRouteName() == 'delete-item') bg-primary text-light active @endif"
                        href="{{route('home')}}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-trash-can"></i></div>
-                        Удалить
+                        {{__('Հեռացնել')}}
                     </a>
                 </div>
             </div>
             <div class="sb-sidenav-footer">
-                <div class="small">Կազմակերպություն:</div>
+                <div class="small">Superadmin:</div>
                 {{Auth::user()->name}}
             </div>
         </nav>
@@ -87,10 +87,13 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">@if(Route::currentRouteName() == 'home')
+                <h1 class="mt-4">
+                    @if(Route::currentRouteName() == 'home')
                         <i class="fa-solid fa-gauge me-1"></i> {{__('Գլխավոր')}}
                     @elseif(Route::currentRouteName() == 'super-add-item')
                         <i class="fa-solid fa-file-circle-plus me-1"></i>  {{__('Ավլեացնել')}}
+                    @elseif(Route::currentRouteName() == 'super-categories')
+                        <i class="fa-solid fa-code-branch me-1"></i>  {{__('Կատեգորիաներ')}}
                     @endif</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item active">{{__('Ադմին վահանակ')}}</li>
@@ -107,20 +110,21 @@
                         <div class="d-block col-xl-3 col-md-6">
                             <div class="card bg-warning text-white mb-4">
                                 <div class="card-body text-center"><i class="fa-solid fa-file-pen me-1"></i>
-                                    Редактировать
+                                    {{__('Խմբագրել')}}
                                 </div>
                             </div>
                         </div>
-                        <a href="{{route('categories')}}" class="d-block col-xl-3 col-md-6">
+                        <a href="{{route('super-categories')}}" class="d-block col-xl-3 col-md-6">
                             <div class="card bg-primary text-white mb-4">
                                 <div class="card-body text-center"><i class="fa-solid fa-code-branch me-1"></i>
-                                    Категории
+                                    {{__('Կատեգորիաներ')}}
                                 </div>
                             </div>
                         </a>
                         <div class="d-block col-xl-3 col-md-6">
                             <div class="card bg-danger text-white mb-4">
-                                <div class="card-body text-center"><i class="fa-solid fa-trash-can me-1"></i> Удалить
+                                <div class="card-body text-center"><i class="fa-solid fa-trash-can me-1"></i>
+                                    {{__('Հեռացնել')}}
                                 </div>
                             </div>
                         </div>

@@ -14,10 +14,10 @@ class VerifyController extends Controller
 
             $user = User::find(Auth::user()->id);
             $user->email_verified_at = now();
-            $user->money = 5000;
+            $user->money = $user->money + 300;
             $user->save();
 
-            return redirect()->route('home')->with('alert','success%Ձեր Էլ. հասցեն հաստատված է');
+            return redirect()->route('home')->with('alert','success%Ձեր Էլ. հասցեն հաստատված է +300դրամ');
 
         }
         else {
@@ -33,10 +33,11 @@ class VerifyController extends Controller
         if (Auth::user()->phone_verified_at == null and Auth::user()->phone_temp_key == $code) {
 
             $user = Auth::user();
-            $user->phone_verified_at = now();;
+            $user->phone_verified_at = now();
+            $user->money = $user->money + 700;
             $user->save();
 
-            return redirect()->route('home')->with('alert','success%Ձեր հեռախոսը հաստատված է');
+            return redirect()->route('home')->with('alert','success%Ձեր հեռախոսը հաստատված է +700դրամ');
 
         }
         else {

@@ -13,7 +13,7 @@ class SmsController extends Controller
         $user->phone = $request->phone;
         $user->save();
 
-        $number = '374' . $user->phone;
+        $number = '3740' . $user->phone;
         $code = $user->phone_temp_key;
 
         $curl = curl_init();

@@ -2,7 +2,7 @@
     <div class="col-10 col-sm-8 mx-auto py-3 py-sm-5 d-flex flex-wrap">
         <div class="col-12 col-sm d-flex gap-2 gap-sm-3 align-items-center">
             <div class="col-auto d-flex gap-2 justify-content-center align-items-center">
-                <img src="{{ asset('images/gni.png') }}" style="width: 60px;height: 60px" alt="">
+                <img src="{{ asset('images/gni.png') }}" width="60px" height="60px" alt="">
                 <p class="d-block d-sm-none fw-bold text-light fs-1" style="font-family: lobster,sans-serif;line-height: initial">Gni</p>
             </div>
             <div class="col-auto text-center text-sm-start flex-column align-items-center">
@@ -19,7 +19,7 @@
                     {{__('Գնեք զեղչային կտրոններ և')}} <br class="d-none d-sm-block">{{__('քարտեր մեզ մոտ')}}
                 </p>
                 <div class="col-2">
-                    <img src="{{ asset('images/card.png') }}" style="width: 100%;height: 100%" alt="">
+                    <img src="{{ asset('images/card.png') }}" style="width: 100%;height: auto" alt="">
                 </div>
             </div>
         </div>

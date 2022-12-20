@@ -44,7 +44,6 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Created at</th>
-                    <th>Edit</th>
                     <th>Delete</th>
                 </tr>
                 </thead>
@@ -55,7 +54,6 @@
                             <td class="fw-bold">{{$category->id}}</td>
                             <td>{{$category->name}}</td>
                             <td>@isset($category->created_at) {{$category->created_at->diffForHumans()}} @endisset</td>
-                            <td><button class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></button></td>
                             <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-category-modal{{$category->id}}"><i class="fa-solid fa-trash"></i></button></td>
                         </tr>
                         <!-- Modal -->

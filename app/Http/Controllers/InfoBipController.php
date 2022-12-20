@@ -21,7 +21,7 @@ class InfoBipController extends Controller
         $user->phone = $request->phone;
         $user->save();
 
-        $number = '374' . $request->phone;
+        $number = '3740' . $request->phone;
         $code = Auth::user()->phone_temp_key;
 
 
@@ -53,7 +53,7 @@ class InfoBipController extends Controller
 
     public function send($reg_number,$reg_code) {
 
-        $number = '374' . $reg_number;
+        $number = '3740' . $reg_number;
         $code = $reg_code;
 
         $configuration = (new Configuration())

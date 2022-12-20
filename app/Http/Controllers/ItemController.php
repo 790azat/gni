@@ -62,13 +62,14 @@ class ItemController extends Controller
 
             $user = User::find(Auth::user()->id);
             $user->coupons = $array;
+            $user->money = $user->money - 300;
             $user->save();
 
             $item = Items::find($id);
             $item->buy_count++;
             $item->save();
 
-            return redirect()->route('home')->with('alert','success%Դուք հաջողությամբ գնեցիք զեղչը');
+            return redirect()->route('my-coupons')->with('alert','success%Դուք հաջողությամբ գնեցիք զեղչը');
         }
         else {
             return back()->with('alert','danger%Այդպիսի ակցիա գոյություն չունի');

@@ -19,8 +19,7 @@
                 <a href="/item/{{$item->id}}" class="col p-2 text-light card-hover">
                     <div class="shadow rounded overflow-hidden bg-dark">
                         <div class="col-12">
-                            <img src="{{ asset('storage/images/'. $item->main_image) }}"
-                                 style="width: 100%;height: 180px;object-fit: cover" alt="">
+                            <img src="{{ asset('storage/images/'. $item->main_image) }}" style="width: 100%;height: 180px;object-fit: cover" alt="">
                         </div>
                         <div class="col-12 p-3 pb-0 d-flex">
                             <p class="fw-bold fs-5">{{$item->name}}</p>

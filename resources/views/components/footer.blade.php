@@ -3,16 +3,16 @@
         <p style="font-size: 13px"><i class="fa-solid fa-handshake me-1"></i> {{__('Գրանցել կազմակերպություն')}}</p>
     </a>
     <div>
-        <img src="{{ asset('images/idram.svg') }}" style="width: 100px" alt="">
+        <img loading="lazy" src="{{ asset('images/idram.svg') }}" style="width: 100px" alt="">
     </div>
     <div>
-        <img src="{{ asset('images/easypay.png') }}" style="width: 100px" alt="">
+        <img loading="lazy" src="{{ asset('images/easypay.png') }}" style="width: 100px" alt="">
     </div>
     <div>
-        <img src="{{ asset('images/telcell.png') }}" style="width: 100px" alt="">
+        <img loading="lazy" src="{{ asset('images/telcell.png') }}" style="width: 100px" alt="">
     </div>
     <div>
-        <img src="{{ asset('images/paypal.png') }}" style="width: 100px" alt="">
+        <img loading="lazy" src="{{ asset('images/paypal.png') }}" style="width: 100px" alt="">
     </div>
 {{--    <div>--}}
 {{--        <img src="{{ asset('images/visa.svg') }}" style="width: 100px" alt="">--}}

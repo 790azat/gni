@@ -36,6 +36,7 @@ Route::get('/', [ItemController::class,'index'])->name('welcome');
 Route::get('/item/{id}', [ItemController::class,'show']);
 Route::get('/category/{id}', [ItemController::class,'show_category']);
 Route::get('/buy-item/{id}', [ItemController::class, 'buy_item'])->middleware('auth');
+
 Route::get('/locale/{lang}', [LanguageController::class, 'set_lang']);
 
 //  User admin
@@ -91,7 +92,7 @@ Route::middleware([IsSuperAdmin::class])->group(function () {
     Route::get('/disable-item/{id}',[ItemController::class,'disable_item']);
     Route::post('/update-item',[ItemController::class,'update_item']);
     Route::get('/delete-item/{id}',[ItemController::class,'delete_item']);
-    Route::get('/categories', [CategoriesController::class,'index'])->name('categories');
+    Route::view('/categories', 'superadmin.super-categories',['categories' => Categories::all()])->name('super-categories');
     Route::post('/add-category', [CategoriesController::class,'add_category']);
     Route::get('/delete-category/{id}',[CategoriesController::class, 'delete_category']);
 

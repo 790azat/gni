@@ -82,6 +82,9 @@
                     <div class="col-12 mb-3">
                         <button type="submit" class="btn btn-success col-12">{{__('Գրանցվել')}}</button>
                     </div>
+                    <div class="col-12 mb-3">
+                        <a href="{{route('company-register')}}"><button type="button" class="btn btn-outline-success col-12">{{__('Կազմակերպություն')}}</button></a>
+                    </div>
                 </form>
             </div>
         </div>

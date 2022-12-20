@@ -24,7 +24,7 @@ class CategoriesController extends Controller
 
         $category->save();
 
-        return redirect()->route('categories')->with('alert','success%Կատեգորիան հաջողությաբ ավելացված է');
+        return back()->with('alert','success%Կատեգորիան հաջողությաբ ավելացված է');
 
     }
 
@@ -34,6 +34,6 @@ class CategoriesController extends Controller
         $category_name = $category->name;
         $category->delete();
 
-        return redirect()->route('categories')->with('alert','danger%Կատեգորիան հաջողությամբ հեռացված է');
+        return back()->with('alert','danger%Կատեգորիան հաջողությամբ հեռացված է');
     }
 }
