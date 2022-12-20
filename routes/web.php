@@ -73,6 +73,12 @@ Route::middleware([IsAdmin::class])->group(function () {
     Route::post('/add-item',[ItemController::class,'add_item']);
     Route::post('/update-item',[ItemController::class,'update_item']);
     Route::get('/delete-item/{id}',[ItemController::class,'delete_item']);
+    Route::view('/admin-data','admin.admin-data')->name('admin-data');
+    Route::post('/update-admin-data',[ItemController::class,'update_admin_data']);
+    Route::view('/admin-password','admin.admin-password')->name('admin-password');
+    Route::post('/update-admin-password',[ItemController::class,'update_admin_password']);
+
+
 });
 
 //  Super admin

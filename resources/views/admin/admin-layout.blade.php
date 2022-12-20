@@ -61,21 +61,16 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-file-circle-plus"></i></div>
                         {{__('Ավելացնել')}}
                     </a>
-{{--                    <a class="nav-link @if(Route::currentRouteName() == 'edit-item') bg-primary text-light active @endif"--}}
-{{--                       href="{{route('home')}}">--}}
-{{--                        <div class="sb-nav-link-icon"><i class="fa-solid fa-pen"></i></div>--}}
-{{--                        Редактировать--}}
-{{--                    </a>--}}
-{{--                    <a class="nav-link @if(Route::currentRouteName() == 'categories') bg-primary text-light active @endif"--}}
-{{--                       href="{{route('categories')}}">--}}
-{{--                        <div class="sb-nav-link-icon"><i class="fa-solid fa-code-branch"></i></div>--}}
-{{--                        Категории--}}
-{{--                    </a>--}}
-{{--                    <a class="nav-link @if(Route::currentRouteName() == 'delete-item') bg-primary text-light active @endif"--}}
-{{--                       href="{{route('home')}}">--}}
-{{--                        <div class="sb-nav-link-icon"><i class="fa-solid fa-trash-can"></i></div>--}}
-{{--                        Удалить--}}
-{{--                    </a>--}}
+                    <a class="nav-link @if(Route::currentRouteName() == 'admin-data') bg-primary text-light active @endif"
+                       href="{{route('admin-data')}}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-folder-open"></i></div>
+                        {{__('Տվյալներ')}}
+                    </a>
+                    <a class="nav-link @if(Route::currentRouteName() == 'admin-password') bg-primary text-light active @endif"
+                       href="{{route('admin-password')}}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-key"></i></div>
+                        {{__('Գաղտնաբառ')}}
+                    </a>
                 </div>
             </div>
             <div class="sb-sidenav-footer">
@@ -87,10 +82,15 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1 class="mt-4">@if(Route::currentRouteName() == 'home')
+                <h1 class="mt-4">
+                    @if(Route::currentRouteName() == 'home')
                         <i class="fa-solid fa-gauge me-1"></i> {{__('Գլխավոր')}}
                     @elseif(Route::currentRouteName() == 'add-item')
                         <i class="fa-solid fa-file-circle-plus me-1"></i>  {{__('Ավլեացնել')}}
+                    @elseif(Route::currentRouteName() == 'admin-data')
+                        <i class="fa-solid fa-folder-open"></i>  {{__('Տվյալներ')}}
+                    @elseif(Route::currentRouteName() == 'admin-password')
+                        <i class="fa-solid fa-key"></i>  {{__('Գաղտնաբառ')}}
                     @endif</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item active">{{__('Ադմին վահանակ')}}</li>

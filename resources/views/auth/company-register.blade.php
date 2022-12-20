@@ -29,7 +29,7 @@
                                 <label for="name" class="fw-bold">{{__('ԱԱՀ')}}</label>
                             </div>
                             <div class="col-12 mb-2">
-                                <input id="name" placeholder="VAT" type="text" class="form-control" name="aah" value="{{ old('aah') }}" required autocomplete="aah" autofocus>
+                                <input id="aah" placeholder="VAT" type="text" class="form-control" name="aah" value="{{ old('aah') }}" required autocomplete="aah" autofocus>
                             </div>
                         </div>
                     </div>

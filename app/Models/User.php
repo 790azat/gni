@@ -30,6 +30,7 @@ class User extends Authenticatable
         'password',
         'is_admin',
         'is_super_admin',
+        'aah',
         'phone',
         'facebook_id',
         'google_id',
