@@ -13,7 +13,7 @@ class ItemController extends Controller
 {
     public function index() {
 
-        $items = Items::all();
+        $items = Items::where('status',1)->get();
         $categories = Categories::all();
         return view('welcome',['items' => $items,'categories' => $categories]);
 
@@ -21,14 +21,19 @@ class ItemController extends Controller
 
     public function show($id) {
 
-        $item = Items::find($id);
-        return view('item',['item' => $item]);
+        if (Items::find($id) !== null and Items::find($id)->status == 1) {
+            $item = Items::find($id);
+            return view('item',['item' => $item]);
+        }
+        else {
+            return back()->with('alert','danger%Այդպիսի ակցիա գոյություն չունի');
+        }
 
     }
 
     public function show_category($id) {
 
-        $items = Items::where('categories_id', $id)->get();
+        $items = Items::where('categories_id', $id)->where('status',1)->get();
         $categories = Categories::all();
         return view('welcome',['items' => $items,'categories' => $categories]);
 
@@ -36,32 +41,37 @@ class ItemController extends Controller
 
     public function buy_item($id) {
 
-        $old_coupons = Auth::user()->coupons;
+        if (Items::find($id) !== null and Items::find($id)->status == 1) {
+            $old_coupons = Auth::user()->coupons;
 
-        if ($old_coupons == null) {
-            $array = [];
+            if ($old_coupons == null) {
+                $array = [];
+            }
+            else {
+                $array = json_decode($old_coupons);
+            }
+
+            if (in_array($id,$array)) {
+                return redirect()->back()->with('alert','warning%Դուք արդեն ունեք այս զեղչը.');
+            }
+            else
+
+                array_push($array,$id);
+            $array = json_encode($array);
+
+            $user = User::find(Auth::user()->id);
+            $user->coupons = $array;
+            $user->save();
+
+            $item = Items::find($id);
+            $item->buy_count++;
+            $item->save();
+
+            return redirect()->route('home')->with('alert','success%Դուք հաջողությամբ գնեցիք զեղչը');
         }
         else {
-            $array = json_decode($old_coupons);
+            return back()->with('alert','danger%Այդպիսի ակցիա գոյություն չունի');
         }
-
-        if (in_array($id,$array)) {
-            return redirect()->back()->with('alert','warning%Դուք արդեն ունեք այս զեղչը.');
-        }
-        else
-
-        array_push($array,$id);
-        $array = json_encode($array);
-
-        $user = User::find(Auth::user()->id);
-        $user->coupons = $array;
-        $user->save();
-
-        $item = Items::find($id);
-        $item->buy_count++;
-        $item->save();
-
-        return redirect()->route('home')->with('alert','success%Դուք հաջողությամբ գնեցիք զեղչը');
 
     }
 
@@ -70,6 +80,8 @@ class ItemController extends Controller
         $item = new Items;
 
         $item->name = $request->name;
+        $item->owner = Auth::user()->id;
+        $item->status = 0;
         $item->categories_id = $request->category;
         $item->text = $request->text;
         $item->info = $request->info;
@@ -95,16 +107,79 @@ class ItemController extends Controller
 
         $item->save();
 
-        return redirect()->route('home')->with('alert','success%Акция успешно добавлена');
+        return redirect()->route('home')->with('alert','success%Ակցիան հաջողութթյամբ ավելացված է');
+
+    }
+
+    public function accept_item(Request $request) {
+
+        $item = Items::find($request->id);
+        $item->status = 1;
+        $item->save();
+
+        return redirect()->route('home')->with('alert','primary%Ակցիան հաջողութթյամբ հաստատված է');
+
+    }
+
+    public function disable_item(Request $request) {
+
+        $item = Items::find($request->id);
+        $item->status = 0;
+        $item->save();
+
+        return redirect()->route('home')->with('alert','warning%Ակցիան հաջողութթյամբ անջատված է');
+
+    }
+
+    public function update_item(Request $request) {
+
+        $item = Items::find($request->id);
+
+        $item->name = $request->name;
+        $item->categories_id = $request->category;
+        $item->text = $request->text;
+        $item->info = $request->info;
+        $item->start_time = $request->start_time;
+        $item->end_time = $request->end_time;
+        $item->old_price = $request->old_price;
+        $item->new_price = $request->new_price;
+
+        if ($request->hasFile('main_image')) {
+            $item->main_image = time() . '-' . $request->main_image->getClientOriginalName();
+            $request->file('main_image')->storeAs('images',time() . '-' . $request->main_image->getClientOriginalName(),'public');
+        }
+
+        if ($request->hasFile('images')) {
+            if ($request->hasFile('images')) {
+                $array = [];
+                foreach ($request->file('images') as $image) {
+                    $name = time() . '-' . $image->getClientOriginalName();
+                    $image->storeAs('images',$name,'public');
+                    array_push($array,$name);
+                }
+                $array = json_encode($array);
+            }
+            $item->images = $array;
+        }
+
+        $item->save();
+
+        return redirect()->route('home')->with('alert','success%Ակցիան հաջողութթյամբ փոփոխված է');
 
     }
 
     public function delete_item($id) {
 
         $item = Items::find($id);
-        $item->delete();
 
-        return redirect()->route('home')->with('alert', 'danger%Акция успешно удалена');
+        if (Auth::user()->id == Items::find($id)->owner) {
+            $item->delete();
+        }
+        else {
+            return back();
+        }
+
+        return redirect()->route('home')->with('alert', 'danger%Ակցիան հաջողութթյամբ հեռացված է');
 
     }
 

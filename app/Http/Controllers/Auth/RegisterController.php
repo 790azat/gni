@@ -66,21 +66,36 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $code = rand(1000,9999);
-        $phone_code = rand(100000,999999);
-        $email = $data['email'];
 
-        (new \App\Http\Controllers\MailController)->send_mail($email,$code);
-        (new \App\Http\Controllers\InfoBipController)->send($data['phone'],$phone_code);
+        if (isset($data['is_admin'])) {
+            return User::create([
+                'name' => $data['name'],
+                'aah' => $data['aah'],
+                'is_admin' => $data['is_admin'],
+                'email' => $data['email'],
+                'phone' => $data['phone'],
+                'password' => Hash::make($data['password']),
+            ]);
+        }
+        else {
 
-        return User::create([
-            'name' => $data['name'],
-            'surname' => $data['surname'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
-            'password' => Hash::make($data['password']),
-            'temp_key' => $code,
-            'phone_temp_key' => $phone_code
-        ]);
+            $code = rand(1000,9999);
+            $phone_code = rand(100000,999999);
+            $email = $data['email'];
+
+            (new \App\Http\Controllers\MailController)->send_mail($email,$code);
+            (new \App\Http\Controllers\InfoBipController)->send($data['phone'],$phone_code);
+
+            return User::create([
+                'name' => $data['name'],
+                'surname' => $data['surname'],
+                'email' => $data['email'],
+                'phone' => $data['phone'],
+                'password' => Hash::make($data['password']),
+                'temp_key' => $code,
+                'phone_temp_key' => $phone_code
+            ]);
+
+        }
     }
 }

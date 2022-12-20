@@ -56,26 +56,26 @@
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         {{__('Գլխավոր')}}
                     </a>
-                    <a class="nav-link @if(Route::currentRouteName() == 'add-item') bg-primary text-light active @endif"
-                       href="{{route('add-item')}}">
+                    <a class="nav-link @if(Route::currentRouteName() == 'super-add-item') bg-primary text-light active @endif"
+                       href="{{route('super-add-item')}}">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-file-circle-plus"></i></div>
                         {{__('Ավելացնել')}}
                     </a>
-{{--                    <a class="nav-link @if(Route::currentRouteName() == 'edit-item') bg-primary text-light active @endif"--}}
-{{--                       href="{{route('home')}}">--}}
-{{--                        <div class="sb-nav-link-icon"><i class="fa-solid fa-pen"></i></div>--}}
-{{--                        Редактировать--}}
-{{--                    </a>--}}
-{{--                    <a class="nav-link @if(Route::currentRouteName() == 'categories') bg-primary text-light active @endif"--}}
-{{--                       href="{{route('categories')}}">--}}
-{{--                        <div class="sb-nav-link-icon"><i class="fa-solid fa-code-branch"></i></div>--}}
-{{--                        Категории--}}
-{{--                    </a>--}}
-{{--                    <a class="nav-link @if(Route::currentRouteName() == 'delete-item') bg-primary text-light active @endif"--}}
-{{--                       href="{{route('home')}}">--}}
-{{--                        <div class="sb-nav-link-icon"><i class="fa-solid fa-trash-can"></i></div>--}}
-{{--                        Удалить--}}
-{{--                    </a>--}}
+                    <a class="nav-link @if(Route::currentRouteName() == 'edit-item') bg-primary text-light active @endif"
+                       href="{{route('home')}}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-pen"></i></div>
+                        Редактировать
+                    </a>
+                    <a class="nav-link @if(Route::currentRouteName() == 'categories') bg-primary text-light active @endif"
+                       href="{{route('categories')}}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-code-branch"></i></div>
+                        Категории
+                    </a>
+                    <a class="nav-link @if(Route::currentRouteName() == 'delete-item') bg-primary text-light active @endif"
+                       href="{{route('home')}}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-trash-can"></i></div>
+                        Удалить
+                    </a>
                 </div>
             </div>
             <div class="sb-sidenav-footer">
@@ -89,7 +89,7 @@
             <div class="container-fluid px-4">
                 <h1 class="mt-4">@if(Route::currentRouteName() == 'home')
                         <i class="fa-solid fa-gauge me-1"></i> {{__('Գլխավոր')}}
-                    @elseif(Route::currentRouteName() == 'add-item')
+                    @elseif(Route::currentRouteName() == 'super-add-item')
                         <i class="fa-solid fa-file-circle-plus me-1"></i>  {{__('Ավլեացնել')}}
                     @endif</h1>
                 <ol class="breadcrumb mb-4">
@@ -97,33 +97,33 @@
                 </ol>
                 @if(Route::currentRouteName() == 'home')
                     <div class="row">
-                        <a href="{{route('add-item')}}" class="d-block col-xl-3 col-md-6">
+                        <a href="{{route('super-add-item')}}" class="d-block col-xl-3 col-md-6">
                             <div class="card bg-success text-white mb-4">
                                 <div class="card-body text-center"><i class="fa-solid fa-file-circle-plus me-1"></i>
                                     {{__('Ավլեացնել')}}
                                 </div>
                             </div>
                         </a>
-{{--                        <div class="d-block col-xl-3 col-md-6">--}}
-{{--                            <div class="card bg-warning text-white mb-4">--}}
-{{--                                <div class="card-body text-center"><i class="fa-solid fa-file-pen me-1"></i>--}}
-{{--                                    Редактировать--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <a href="{{route('categories')}}" class="d-block col-xl-3 col-md-6">--}}
-{{--                            <div class="card bg-primary text-white mb-4">--}}
-{{--                                <div class="card-body text-center"><i class="fa-solid fa-code-branch me-1"></i>--}}
-{{--                                    Категории--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </a>--}}
-{{--                        <div class="d-block col-xl-3 col-md-6">--}}
-{{--                            <div class="card bg-danger text-white mb-4">--}}
-{{--                                <div class="card-body text-center"><i class="fa-solid fa-trash-can me-1"></i> Удалить--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+                        <div class="d-block col-xl-3 col-md-6">
+                            <div class="card bg-warning text-white mb-4">
+                                <div class="card-body text-center"><i class="fa-solid fa-file-pen me-1"></i>
+                                    Редактировать
+                                </div>
+                            </div>
+                        </div>
+                        <a href="{{route('categories')}}" class="d-block col-xl-3 col-md-6">
+                            <div class="card bg-primary text-white mb-4">
+                                <div class="card-body text-center"><i class="fa-solid fa-code-branch me-1"></i>
+                                    Категории
+                                </div>
+                            </div>
+                        </a>
+                        <div class="d-block col-xl-3 col-md-6">
+                            <div class="card bg-danger text-white mb-4">
+                                <div class="card-body text-center"><i class="fa-solid fa-trash-can me-1"></i> Удалить
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 @endif
                 @yield('content')

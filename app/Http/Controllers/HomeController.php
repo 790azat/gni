@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
 use App\Models\Items;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -27,8 +28,14 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::user()->is_admin == 1) {
-            $items = Items::with('category')->get();
-            return view('admin.admin',['items' => $items]);
+            $items = Items::where('owner',Auth::user()->id)->get();
+            $categories = Categories::all();
+            return view('admin.admin',['items' => $items,'categories' => $categories]);
+        }
+        elseif (Auth::user()->is_super_admin == 1) {
+            $items = Items::all();
+            $categories = Categories::all();
+            return view('superadmin.super-admin',['items' => $items,'categories' => $categories]);
         }
         else {
             $user = Auth::user();

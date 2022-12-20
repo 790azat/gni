@@ -51,9 +51,11 @@
         @endguest
         @auth
             <div class="d-flex gap-1 gap-sm-2-2">
-                <div class="d-flex justify-content-center align-items-center gap-2">
-                    <a href="{{route('my-wallet')}}"><button class="btn text-light d-flex justify-content-center align-items-center gap-1 text-nowrap" style="background: #3b3b3b;font-size: 13px"><i class="fa-solid fa-wallet me-1"></i> {{Auth::user()->money}} {{__('դր.')}}</button></a>
-                </div>
+                @if(Auth::user()->is_admin == 0)
+                    <div class="d-flex justify-content-center align-items-center gap-2">
+                        <a href="{{route('my-wallet')}}"><button class="btn text-light d-flex justify-content-center align-items-center gap-1 text-nowrap" style="background: #3b3b3b;font-size: 13px"><i class="fa-solid fa-wallet me-1"></i> {{Auth::user()->money}} {{__('դր.')}}</button></a>
+                    </div>
+                @endif
                 <div class="d-flex justify-content-center align-items-center gap-2">
                     <button class="btn text-light dropdown-toggle d-flex justify-content-center align-items-center gap-1" style="background: #3b3b3b;font-size: 13px" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-user-circle me-1"></i> {{Auth::user()->name}}</button>
                     <ul class="dropdown-menu dropdown-menu-end">

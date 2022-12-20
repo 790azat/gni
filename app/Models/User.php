@@ -12,6 +12,10 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function items() {
+        return $this->hasMany(Items::class,'owner');
+    }
+
 
 
     /**
@@ -24,6 +28,8 @@ class User extends Authenticatable
         'surname',
         'email',
         'password',
+        'is_admin',
+        'is_super_admin',
         'phone',
         'facebook_id',
         'google_id',

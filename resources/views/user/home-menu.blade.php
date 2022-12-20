@@ -48,7 +48,7 @@
                 @else
                     <i class="fa-solid fa-circle-exclamation me-1 text-danger"></i>
                 @endif
-                0{{$user->phone}}
+                @if($user->phone != null) 0 @endif{{$user->phone}}
             </p>
         </div>
     </div>
