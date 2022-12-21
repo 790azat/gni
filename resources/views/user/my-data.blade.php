@@ -6,7 +6,8 @@
         <div class="col-12 col-sm d-flex gap-2 flex-wrap p-2 p-sm-3 justify-content-center align-content-start bg-light">
             <div class="col-12 p-3 gap-2 d-flex flex-wrap justify-content-center align-content-center bg-white rounded-1 border border-1 border-opacity-10 border-secondary">
                 <div class="col p-3 d-flex flex-wrap justify-content-center align-content-center bg-white rounded-1 border border-1 border-opacity-10 border-secondary">
-                    <form action="/update-user-data" method="post" enctype="multipart/form-data" class="col-12 d-flex flex-wrap">
+                    <form action="/update-my-data" method="post" enctype="multipart/form-data" class="col-12 d-flex flex-wrap">
+                        @csrf
                         <div class="d-flex col-12 gap-3 mb-2">
                             <div class="col">
                                 <label class="col-12">
@@ -33,7 +34,7 @@
                                     {{__('Հեռախոս')}}
                                     <div class="input-group">
                                         <div class="input-group-text">+374</div>
-                                        <input type="tel" minlength="8" maxlength="8" value="{{$user->phone}}" class="form-control">
+                                        <input type="tel" minlength="8" maxlength="8" value="{{$user->phone}}" name="phone" class="form-control">
                                     </div>
                                 </label>
 

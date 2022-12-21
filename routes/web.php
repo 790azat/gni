@@ -50,6 +50,7 @@ Route::middleware([Authenticate::class, NotAdmin::class])->group(function () {
     Route::get('/my-bonuses', [HomeController::class, 'my_bonuses'])->name('my-bonuses');
     Route::get('/my-wallet', [HomeController::class, 'my_wallet'])->name('my-wallet');
     Route::get('/my-data', [HomeController::class, 'my_data'])->name('my-data');
+    Route::post('/update-my-data', [HomeController::class, 'update_my_data']);
     Route::get('/my-password', [HomeController::class, 'my_password'])->name('my-password');
     Route::post('/update-my-avatar', [HomeController::class, 'update_my_avatar']);
     Route::get('/resend/{user_id}/{email}', function ($user_id,$email) {

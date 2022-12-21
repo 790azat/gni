@@ -65,6 +65,16 @@ class HomeController extends Controller
         return view('user.my-data', ['user' => $user]);
     }
 
+    public function update_my_data(Request $request) {
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->surname = $request->surname;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->save();
+        return back()->with('alert','success%Ձեր տվյալները հաջողությամբ փոխվել են');
+    }
+
     public function my_password() {
         $user = Auth::user();
         return view('user.my-password', ['user' => $user]);

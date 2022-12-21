@@ -21,9 +21,8 @@ class InfoBipController extends Controller
         $user->phone = $request->phone;
         $user->save();
 
-        $number = '3740' . $request->phone;
+        $number = '374' . $request->phone;
         $code = Auth::user()->phone_temp_key;
-
 
         $configuration = (new Configuration())
             ->setHost('xr83y3.api.infobip.com')
@@ -47,13 +46,13 @@ class InfoBipController extends Controller
 
         }
 
-        return redirect()->route('home')->with('alert','primary%Նամակը ուղղարկվել է Ձեր համարին');
+        return back()->with('alert','primary%Նամակը ուղղարկվել է Ձեր համարին');
 
     }
 
     public function send($reg_number,$reg_code) {
 
-        $number = '3740' . $reg_number;
+        $number = '374' . $reg_number;
         $code = $reg_code;
 
         $configuration = (new Configuration())
@@ -78,7 +77,7 @@ class InfoBipController extends Controller
 
         }
 
-        return redirect()->route('home')->with('alert','primary%Նամակը ուղղարկվել է Ձեր համարին');
+        return back()->with('alert','primary%Նամակը ուղղարկվել է Ձեր համարին');
     }
 
 }

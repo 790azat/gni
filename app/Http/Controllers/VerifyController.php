@@ -34,7 +34,7 @@ class VerifyController extends Controller
 
             $user = Auth::user();
             $user->phone_verified_at = now();
-            $user->money = $user->money + 700;
+            $user->money = $user->money + 600;
             $user->save();
 
             return redirect()->route('home')->with('alert','success%Ձեր հեռախոսը հաստատված է +700դրամ');
