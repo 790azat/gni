@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use App\Models\Items;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,23 +54,38 @@ class ItemController extends Controller
             }
 
             if (in_array($id,$array)) {
-                return redirect()->back()->with('alert','warning%Դուք արդեն ունեք այս զեղչը.');
+                return back()->with('alert','warning%Դուք արդեն ունեք այս զեղչը.');
             }
-            else
+            if (Auth::user()->money >= 300) {
 
                 array_push($array,$id);
-            $array = json_encode($array);
+                $array = json_encode($array);
 
-            $user = User::find(Auth::user()->id);
-            $user->coupons = $array;
-            $user->money = $user->money - 300;
-            $user->save();
+                $user = User::find(Auth::user()->id);
+                $user->coupons = $array;
+                $user->money = $user->money - 300;
+                $user->save();
 
-            $item = Items::find($id);
-            $item->buy_count++;
-            $item->save();
+                $item = Items::find($id);
+                $item->buy_count++;
+                $item->save();
 
-            return redirect()->route('my-coupons')->with('alert','success%Դուք հաջողությամբ գնեցիք զեղչը');
+                Transaction::create([
+                    'buyer_id' => Auth::user()->id,
+                    'item_id' => $id,
+                    'price' => 300,
+                    'status' => 'pending',
+                    'idram' => '790790'
+                ]);
+
+                return redirect()->route('my-coupons')->with('alert','success%Դուք հաջողությամբ գնեցիք զեղչը');
+
+            }
+            else {
+                return back()->with('alert','danger%Դուք չունեք բավարար գումար');
+            }
+
+
         }
         else {
             return back()->with('alert','danger%Այդպիսի ակցիա գոյություն չունի');
@@ -82,7 +98,7 @@ class ItemController extends Controller
         $item = new Items;
 
         $item->name = $request->name;
-        $item->owner = Auth::user()->id;
+        $item->owner_id = Auth::user()->id;
         $item->status = 0;
         $item->categories_id = $request->category;
         $item->text = $request->text;
@@ -119,17 +135,17 @@ class ItemController extends Controller
         $item->status = 1;
         $item->save();
 
-        return redirect()->route('home')->with('alert','primary%Ակցիան հաջողութթյամբ հաստատված է');
+        return back()->with('alert','primary%Ակցիան հաջողութթյամբ հաստատված է');
 
     }
 
-    public function disable_item(Request $request) {
+    public function disable_item($id) {
 
-        $item = Items::find($request->id);
+        $item = Items::find($id);
         $item->status = 0;
         $item->save();
 
-        return redirect()->route('home')->with('alert','warning%Ակցիան հաջողութթյամբ անջատված է');
+        return back()->with('alert','warning%Ակցիան հաջողութթյամբ անջատված է');
 
     }
 

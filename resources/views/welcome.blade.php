@@ -3,10 +3,10 @@
 @section('content')
     <div class="col-12 py-1 px-2 px-sm-5 shadow" style="position: relative;z-index: 10;background: linear-gradient(to right,#75c712,#00af8f)">
         <p class="text-light text-center d-sm-none" style="font-size: 12px">{{__('Գրանցվեք, հաստատեք Ձեր Էլ. հասցեն և ստացեք')}}
-            <span class="fw-bold text-decoration-underline">5000</span> {{__('դրամ նվեր Ձեր հաշվին')}}
+            <span class="fw-bold text-decoration-underline">1000</span> {{__('դրամ նվեր Ձեր հաշվին')}}
         </p>
         <p class="text-light text-center d-none d-sm-block" style="font-size: 14px">{{__('Գրանցվեք, հաստատեք Ձեր Էլ. հասցեն և ստացեք')}}
-            <span class="fw-bold text-decoration-underline">5000</span> {{__('դրամ նվեր Ձեր հաշվին')}}
+            <span class="fw-bold text-decoration-underline">1000</span> {{__('դրամ նվեր Ձեր հաշվին')}}
         </p>
     </div>
     @include('components.hero')

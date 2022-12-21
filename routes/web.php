@@ -79,14 +79,11 @@ Route::middleware([IsAdmin::class])->group(function () {
     Route::post('/update-admin-data',[ItemController::class,'update_admin_data']);
     Route::view('/admin-password','admin.admin-password')->name('admin-password');
     Route::post('/update-admin-password',[ItemController::class,'update_admin_password']);
-
-
 });
 
 //  Super admin
 
 Route::middleware([IsSuperAdmin::class])->group(function () {
-
     Route::view('/super-add-item', 'superadmin.super-add-item' , ['categories' => Categories::all()])->name('super-add-item');
     Route::post('/add-item',[ItemController::class,'add_item']);
     Route::get('/accept-item/{id}',[ItemController::class,'accept_item']);
@@ -95,8 +92,8 @@ Route::middleware([IsSuperAdmin::class])->group(function () {
     Route::get('/delete-item/{id}',[ItemController::class,'delete_item']);
     Route::view('/categories', 'superadmin.super-categories',['categories' => Categories::all()])->name('super-categories');
     Route::post('/add-category', [CategoriesController::class,'add_category']);
+    Route::view('/companies', 'superadmin.super-companies',['companies' => User::where('is_admin',1)->get(),'categories' => Categories::all()])->name('super-companies');
     Route::get('/delete-category/{id}',[CategoriesController::class, 'delete_category']);
-
 });
 
 //  Social auth

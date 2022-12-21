@@ -46,50 +46,29 @@
                     <div class="col-12 d-flex justify-content-center py-2 mb-2">
                         <p><i class="fa-solid fa-file-invoice me-1"></i> {{__('Գործարքների պատմություն')}}</p>
                     </div>
-                    <div class="col-12 d-flex justify-content-start align-items-center gap-2 py-2 rounded-1 border border-1 border-opacity-10 border-secondary">
-                        <div class="text-success ms-2">
-                            <i class="fa-solid fa-circle-check"></i>
+                    @foreach($transactions as $transaction)
+                        <div class="col-12 d-flex justify-content-start align-items-center gap-2 py-2 rounded-1 border border-1 border-opacity-10 border-secondary">
+                                @if($transaction->status == 'success')
+                                <div class="text-success ms-2">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                </div>
+                                @elseif($transaction->status == 'pending')
+                                <div class="text-warning ms-2">
+                                    <i class="fa-solid fa-clock"></i>
+                                </div>
+                                @elseif($transaction->status == 'canceled')
+                                <div class="text-danger ms-2">
+                                    <i class="fa-solid fa-circle-xmark"></i>
+                                </div>
+                                @endif
+                            <div>
+                                <p>{{$transaction->item->name}} <br> {{__('Գումար')}}: 300{{__('դր.')}} <br> {{$transaction->created_at}} <br> Idram: {{$transaction->idram}} </p>
+                            </div>
+                            <div class="ms-auto me-2 bg-primary text-light p-1 rounded-1">
+                                <p class="text-nowrap">{{__('Կտրոն')}} <i class="ms-1 fa-solid fa-receipt"></i></p>
+                            </div>
                         </div>
-                        <div>
-                            <p>14.12.2022 - 1000{{__('դր.')}}</p>
-                        </div>
-                        <div class="ms-auto me-2 bg-primary text-light p-1 rounded-1">
-                            <p class="text-nowrap">{{__('Կտրոն')}} <i class="ms-1 fa-solid fa-receipt"></i></p>
-                        </div>
-                    </div>
-                    <div class="col-12 d-flex justify-content-start align-items-center gap-2 py-2 rounded-1 border border-1 border-opacity-10 border-secondary">
-                        <div class="text-success ms-2">
-                            <i class="fa-solid fa-circle-check"></i>
-                        </div>
-                        <div>
-                            <p>15.12.2022 - 1000{{__('դր.')}}</p>
-                        </div>
-                        <div class="ms-auto me-2 bg-primary text-light p-1 rounded-1">
-                            <p class="text-nowrap">{{__('Կտրոն')}} <i class="ms-1 fa-solid fa-receipt"></i></p>
-                        </div>
-                    </div>
-                    <div class="col-12 d-flex justify-content-start align-items-center gap-2 py-2 rounded-1 border border-1 border-opacity-10 border-secondary">
-                        <div class="text-danger ms-2">
-                            <i class="fa-solid fa-circle-xmark"></i>
-                        </div>
-                        <div>
-                            <p>16.12.2022 - 1000{{__('դր.')}}</p>
-                        </div>
-                        <div class="ms-auto me-2 bg-primary text-light p-1 rounded-1">
-                            <p class="text-nowrap">{{__('Կտրոն')}} <i class="ms-1 fa-solid fa-receipt"></i></p>
-                        </div>
-                    </div>
-                    <div class="col-12 d-flex justify-content-start align-items-center gap-2 py-2 rounded-1 border border-1 border-opacity-10 border-secondary">
-                        <div class="text-warning ms-2">
-                            <i class="fa-solid fa-clock"></i>
-                        </div>
-                        <div>
-                            <p>13.10.2022 - 500{{__('դր.')}}</p>
-                        </div>
-                        <div class="ms-auto me-2 bg-primary text-light p-1 rounded-1">
-                            <p class="text-nowrap">{{__('Կտրոն')}} <i class="ms-1 fa-solid fa-receipt"></i></p>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

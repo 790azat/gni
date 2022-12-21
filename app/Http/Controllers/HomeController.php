@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use App\Models\Items;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -57,7 +58,8 @@ class HomeController extends Controller
 
     public function my_wallet() {
         $user = Auth::user();
-        return view('user.my-wallet', ['user' => $user]);
+        $transactions = Auth::user()->transactions;
+        return view('user.my-wallet', ['user' => $user,'transactions' => $transactions]);
     }
 
     public function my_data() {

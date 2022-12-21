@@ -61,10 +61,10 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-file-circle-plus"></i></div>
                         {{__('Ավելացնել')}}
                     </a>
-                    <a class="nav-link @if(Route::currentRouteName() == 'edit-item') bg-primary text-light active @endif"
-                       href="{{route('home')}}">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-pen"></i></div>
-                        {{__('Խմբագրել')}}
+                    <a class="nav-link @if(Route::currentRouteName() == 'super-companies') bg-primary text-light active @endif"
+                       href="{{route('super-companies')}}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-people-group me-1"></i></div>
+                        {{__('Ընկերություններ')}}
                     </a>
                     <a class="nav-link @if(Route::currentRouteName() == 'super-categories') bg-primary text-light active @endif"
                        href="{{route('super-categories')}}">
@@ -94,6 +94,8 @@
                         <i class="fa-solid fa-file-circle-plus me-1"></i>  {{__('Ավլեացնել')}}
                     @elseif(Route::currentRouteName() == 'super-categories')
                         <i class="fa-solid fa-code-branch me-1"></i>  {{__('Կատեգորիաներ')}}
+                    @elseif(Route::currentRouteName() == 'super-companies')
+                        <i class="fa-solid fa-people-group me-1"></i>  {{__('Ընկերություններ')}}
                     @endif</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item active">{{__('Ադմին վահանակ')}}</li>
@@ -107,13 +109,13 @@
                                 </div>
                             </div>
                         </a>
-                        <div class="d-block col-xl-3 col-md-6">
+                        <a href="{{route('super-companies')}}" class="d-block col-xl-3 col-md-6">
                             <div class="card bg-warning text-white mb-4">
-                                <div class="card-body text-center"><i class="fa-solid fa-file-pen me-1"></i>
-                                    {{__('Խմբագրել')}}
+                                <div class="card-body text-center"><i class="fa-solid fa-people-group me-1"></i>
+                                    {{__('Ընկերություններ')}}
                                 </div>
                             </div>
-                        </div>
+                        </a>
                         <a href="{{route('super-categories')}}" class="d-block col-xl-3 col-md-6">
                             <div class="card bg-primary text-white mb-4">
                                 <div class="card-body text-center"><i class="fa-solid fa-code-branch me-1"></i>

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('owner');
+            $table->string('owner_id');
             $table->boolean('status')->default(0);
             $table->string('categories_id');
             $table->text('text');

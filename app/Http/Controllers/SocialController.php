@@ -22,8 +22,11 @@ class SocialController extends Controller
             $isUser = User::where('facebook_id',$user->id)->first();
 
             if ($isUser) {
-
                 Auth::login($isUser);
+                return redirect('home');
+            }
+            elseif(User::where('email',$user->getEmail())->first()) {
+                Auth::login(User::where('email',$user->getEmail())->first());
                 return redirect('home');
             }
             else {
@@ -62,8 +65,11 @@ class SocialController extends Controller
             $isUser = User::where('google_id',$user->id)->first();
 
             if ($isUser) {
-
                 Auth::login($isUser);
+                return redirect('home');
+            }
+            elseif(User::where('email',$user->getEmail())->first()) {
+                Auth::login(User::where('email',$user->getEmail())->first());
                 return redirect('home');
             }
             else {

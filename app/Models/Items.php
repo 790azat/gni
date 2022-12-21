@@ -13,8 +13,8 @@ class Items extends Model
         return $this->belongsTo(Categories::class,'categories_id');
     }
 
-    public function ter() {
-        return $this->belongsTo(User::class,'owner');
+    public function owner() {
+        return $this->belongsTo(User::class,'owner_id');
     }
 
 }

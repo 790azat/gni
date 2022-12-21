@@ -8,7 +8,7 @@
         </div>
         <div class="card-body">
             <table id="datatablesSimple" class="table table-bordered table-hover">
-                <thead>
+                <thead class="text-center">
                 <tr>
                     <th>Id</th>
                     <th>Կազմ.</th>
@@ -26,12 +26,12 @@
                     <th>Հեռացնել</th>
                 </tr>
                 </thead>
-                <tbody class="text-center align-middle">
+                <tbody class="text-center align-middle" style="font-size: 13px">
                 @if(isset($items) and $items != null)
                     @foreach($items as $item)
                         <tr>
                             <td class="fw-bold">{{$item->id}}</td>
-                            <td>{{$item->ter->name}}</td>
+                            <td>{{$item->owner->name}}</td>
                             <td>@if($item->status == 1) <p class="text-success"><i class="fa-solid fa-circle-check"></i></p> @else <p class="text-warning"><i class="fa-solid fa-clock"></i></p> @endif</td>
                             <td><a href="item/{{$item->id}}" @if($item->status == 0) style="pointer-events: none" @endif class="text-hover text-start">{{$item->name}}</a></td>
                             <td class="p-1" style="width: 100px"><img src="{{ asset('storage/images/' . $item->main_image) }}" style="width: 100%;height: 100%;object-fit: cover" alt=""></td>
@@ -50,7 +50,7 @@
                             <div class="modal-dialog modal-lg modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{$item->ter->name}}</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">{{$item->owner->name}}</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
