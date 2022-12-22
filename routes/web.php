@@ -13,6 +13,7 @@ use App\Http\Middleware\NotAdmin;
 use App\Mail\SignUp;
 use App\Models\Categories;
 use App\Models\Items;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Artisan;
@@ -45,7 +46,6 @@ Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name(
 
 
 Route::middleware([Authenticate::class, NotAdmin::class])->group(function () {
-
     Route::get('/my-coupons', [HomeController::class, 'my_coupons'])->name('my-coupons');
     Route::get('/my-bonuses', [HomeController::class, 'my_bonuses'])->name('my-bonuses');
     Route::get('/my-wallet', [HomeController::class, 'my_wallet'])->name('my-wallet');
@@ -65,7 +65,6 @@ Route::middleware([Authenticate::class, NotAdmin::class])->group(function () {
     Route::get('/verify_email/{code}', [VerifyController::class, 'verify']);
     Route::post('/verify_phone', [VerifyController::class, 'verify_phone']);
     Route::post('/send',[InfoBipController::class,'index']);
-
 });
 
 //  Company admin
@@ -85,15 +84,14 @@ Route::middleware([IsAdmin::class])->group(function () {
 
 Route::middleware([IsSuperAdmin::class])->group(function () {
     Route::view('/super-add-item', 'superadmin.super-add-item' , ['categories' => Categories::all()])->name('super-add-item');
-    Route::post('/add-item',[ItemController::class,'add_item']);
     Route::get('/accept-item/{id}',[ItemController::class,'accept_item']);
     Route::get('/disable-item/{id}',[ItemController::class,'disable_item']);
-    Route::post('/update-item',[ItemController::class,'update_item']);
-    Route::get('/delete-item/{id}',[ItemController::class,'delete_item']);
     Route::view('/categories', 'superadmin.super-categories',['categories' => Categories::all()])->name('super-categories');
     Route::post('/add-category', [CategoriesController::class,'add_category']);
-    Route::view('/companies', 'superadmin.super-companies',['companies' => User::where('is_admin',1)->get(),'categories' => Categories::all()])->name('super-companies');
     Route::get('/delete-category/{id}',[CategoriesController::class, 'delete_category']);
+    Route::view('/companies', 'superadmin.super-companies',['companies' => User::where('is_admin',1)->get(),'categories' => Categories::all()])->name('super-companies');
+    Route::view('/super-users', 'superadmin.super-users',['users' => User::where('is_admin',0)->get()])->name('super-users');
+    Route::view('/super-transactions', 'superadmin.super-transactions',['transactions' => Transaction::all()])->name('super-transactions');
 });
 
 //  Social auth
@@ -120,7 +118,9 @@ Route::get('/reset', function () {
     return redirect()->route('welcome')->with('alert','success%Reset was complete successfully');
 });
 
-Route::view('/company-register', 'auth.company-register')->name('company-register');
 
 Auth::routes();
+
+Route::view('/company-register', 'auth.company-register')->name('company-register');
+
 

@@ -39,7 +39,7 @@ class SocialController extends Controller
                     'phone_temp_key' => rand(100000,999999),
                     'password' => encrypt('user'),
                     'email_verified_at' => now(),
-                    'money' => 100
+                    'money' => 400
                 ]);
 
                 Auth::login($createUser);
@@ -83,7 +83,7 @@ class SocialController extends Controller
                     'phone_temp_key' => rand(100000,999999),
                     'password' => encrypt('user'),
                     'email_verified_at' => now(),
-                    'money' => 100
+                    'money' => 400
                 ]);
 
                 Auth::login($createUser);

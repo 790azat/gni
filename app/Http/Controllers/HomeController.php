@@ -29,7 +29,7 @@ class HomeController extends Controller
     public function index()
     {
         if (Auth::user()->is_admin == 1) {
-            $items = Items::where('owner',Auth::user()->id)->get();
+            $items = Items::with('owner')->where('owner_id',Auth::user()->id)->get();
             $categories = Categories::all();
             return view('admin.admin',['items' => $items,'categories' => $categories]);
         }

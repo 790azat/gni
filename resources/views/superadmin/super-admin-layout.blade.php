@@ -71,10 +71,15 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-code-branch"></i></div>
                         {{__('Կատեգորիաներ')}}
                     </a>
-                    <a class="nav-link @if(Route::currentRouteName() == 'delete-item') bg-primary text-light active @endif"
-                       href="{{route('home')}}">
-                        <div class="sb-nav-link-icon"><i class="fa-solid fa-trash-can"></i></div>
-                        {{__('Հեռացնել')}}
+                    <a class="nav-link @if(Route::currentRouteName() == 'super-transactions') bg-primary text-light active @endif"
+                       href="{{route('super-transactions')}}">
+                        <div class="sb-nav-link-icon"><i class="fa-sharp fa-solid fa-cash-register me-1"></i></div>
+                        {{__('Վճարումներ')}}
+                    </a>
+                    <a class="nav-link @if(Route::currentRouteName() == 'super-users') bg-primary text-light active @endif"
+                       href="{{route('super-users')}}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-users me-1"></i></div>
+                        {{__('Հաճախորդներ')}}
                     </a>
                 </div>
             </div>
@@ -96,40 +101,51 @@
                         <i class="fa-solid fa-code-branch me-1"></i>  {{__('Կատեգորիաներ')}}
                     @elseif(Route::currentRouteName() == 'super-companies')
                         <i class="fa-solid fa-people-group me-1"></i>  {{__('Ընկերություններ')}}
+                    @elseif(Route::currentRouteName() == 'super-transactions')
+                        <i class="fa-sharp fa-solid fa-cash-register me-1"></i>  {{__('Փոխանցումներ')}}
+                    @elseif(Route::currentRouteName() == 'super-users')
+                        <i class="fa-solid fa-users"></i>  {{__('Հաճախորդներ')}}
                     @endif</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item active">{{__('Ադմին վահանակ')}}</li>
                 </ol>
                 @if(Route::currentRouteName() == 'home')
                     <div class="row">
-                        <a href="{{route('super-add-item')}}" class="d-block col-xl-3 col-md-6">
-                            <div class="card bg-success text-white mb-4">
-                                <div class="card-body text-center"><i class="fa-solid fa-file-circle-plus me-1"></i>
+                        <a href="{{route('super-add-item')}}" class="d-block col-12 col-sm">
+                            <div class="card bg-success text-white mb-2 mb-sm-4">
+                                <div class="card-body text-center text-nowrap"><i class="fa-solid fa-file-circle-plus me-1"></i>
                                     {{__('Ավլեացնել')}}
                                 </div>
                             </div>
                         </a>
-                        <a href="{{route('super-companies')}}" class="d-block col-xl-3 col-md-6">
-                            <div class="card bg-warning text-white mb-4">
-                                <div class="card-body text-center"><i class="fa-solid fa-people-group me-1"></i>
+                        <a href="{{route('super-companies')}}" class="d-block col-12 col-sm">
+                            <div class="card bg-warning text-white mb-2 mb-sm-4">
+                                <div class="card-body text-center text-nowrap"><i class="fa-solid fa-people-group me-1"></i>
                                     {{__('Ընկերություններ')}}
                                 </div>
                             </div>
                         </a>
-                        <a href="{{route('super-categories')}}" class="d-block col-xl-3 col-md-6">
-                            <div class="card bg-primary text-white mb-4">
-                                <div class="card-body text-center"><i class="fa-solid fa-code-branch me-1"></i>
+                        <a href="{{route('super-categories')}}" class="d-block col-12 col-sm">
+                            <div class="card bg-primary text-white mb-2 mb-sm-4">
+                                <div class="card-body text-center text-nowrap"><i class="fa-solid fa-code-branch me-1"></i>
                                     {{__('Կատեգորիաներ')}}
                                 </div>
                             </div>
                         </a>
-                        <div class="d-block col-xl-3 col-md-6">
-                            <div class="card bg-danger text-white mb-4">
-                                <div class="card-body text-center"><i class="fa-solid fa-trash-can me-1"></i>
-                                    {{__('Հեռացնել')}}
+                        <a href="{{route('super-transactions')}}" class="d-block col-12 col-sm">
+                            <div class="card bg-danger text-white mb-2 mb-sm-4">
+                                <div class="card-body text-center text-nowrap"><i class="fa-sharp fa-solid fa-cash-register me-1"></i>
+                                    {{__('Փոխանցումներ')}}
                                 </div>
                             </div>
-                        </div>
+                        </a>
+                        <a href="{{route('super-users')}}" class="d-block col-12 col-sm">
+                            <div class="card bg-info text-white mb-2 mb-sm-4">
+                                <div class="card-body text-center text-nowrap"><i class="fa-solid fa-users me-1"></i>
+                                    {{__('Հաճախորդներ')}}
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 @endif
                 @yield('content')
