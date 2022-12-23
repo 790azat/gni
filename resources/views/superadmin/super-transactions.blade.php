@@ -33,7 +33,7 @@
                                     <p class="text-danger"><i class="fa-solid fa-circle-xmark"></i></p>
                                 @endif
                             </td>
-                            <td>{{$transaction->buyer->name}}</td>
+                            <td>{{$transaction->buyer->id}}: {{$transaction->buyer->name}} {{$transaction->buyer->surname}}</td>
                             <td>{{$transaction->item->name}}</td>
                             <td>{{$transaction->price}}</td>
                             <td>{{$transaction->idram}}</td>

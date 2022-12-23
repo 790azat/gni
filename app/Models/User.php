@@ -20,6 +20,10 @@ class User extends Authenticatable
         return $this->hasMany(Transaction::class,'buyer_id');
     }
 
+    public function coupons() {
+        return $this->hasMany(Coupons::class,'owner_id');
+    }
+
 
 
     /**

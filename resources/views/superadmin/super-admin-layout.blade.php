@@ -81,6 +81,11 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-users me-1"></i></div>
                         {{__('Հաճախորդներ')}}
                     </a>
+                    <a class="nav-link @if(Route::currentRouteName() == 'super-metrika') bg-primary text-light active @endif"
+                       href="{{route('super-metrika')}}">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-chart-pie me-1"></i></div>
+                        {{__('Մետրիկա')}}
+                    </a>
                 </div>
             </div>
             <div class="sb-sidenav-footer">
@@ -105,6 +110,8 @@
                         <i class="fa-sharp fa-solid fa-cash-register me-1"></i>  {{__('Փոխանցումներ')}}
                     @elseif(Route::currentRouteName() == 'super-users')
                         <i class="fa-solid fa-users"></i>  {{__('Հաճախորդներ')}}
+                    @elseif(Route::currentRouteName() == 'super-metrika')
+                        <i class="fa-solid fa-chart-pie"></i> {{__('Մետրիկա')}}
                     @endif</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item active">{{__('Ադմին վահանակ')}}</li>
@@ -143,6 +150,13 @@
                             <div class="card bg-info text-white mb-2 mb-sm-4">
                                 <div class="card-body text-center text-nowrap"><i class="fa-solid fa-users me-1"></i>
                                     {{__('Հաճախորդներ')}}
+                                </div>
+                            </div>
+                        </a>
+                        <a href="{{route('super-metrika')}}" class="d-block col-12 col-sm">
+                            <div class="card bg-secondary text-white mb-2 mb-sm-4">
+                                <div class="card-body text-center text-nowrap"><i class="fa-solid fa-chart-pie me-1"></i>
+                                    {{__('Մետրիկա')}}
                                 </div>
                             </div>
                         </a>

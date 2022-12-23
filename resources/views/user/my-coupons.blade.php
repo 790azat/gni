@@ -9,17 +9,24 @@
                     <div
                         class="col-12 d-flex p-2 rounded-1 align-items-center border border-secondary border-opacity-10">
                         <div class="col d-flex gap-2 overflow-hidden">
+                            <div class="col-auto d-flex align-items-center">
+                                @if($coupon->status == 0)
+                                    <p class="text-primary"><i class="fa-solid fa-circle-check me-1"></i> Ակտիվ</p>
+                                @else
+                                    <p class="text-success"><i class="fa-solid fa-check-to-slot me-1"></i> Կատարած</p>
+                                @endif
+                            </div>
                             <div class="col-auto">
-                                <img src="{{asset('storage/images/' . $coupon->main_image)}}"
+                                <img src="{{asset('storage/images/' . $coupon->item->main_image)}}"
                                      style="width: 50px;height: 50px;object-fit: cover" alt="">
                             </div>
                             <div class="col-auto d-flex flex-column">
                                 <div class="col-auto">
-                                    <p class="text-truncate">{{$coupon->name}}</p>
+                                    <p class="text-truncate">{{$coupon->item->name}}</p>
                                 </div>
                                 <div class="col-auto">
                                     <p>{{__('Զեղչ')}}: <span
-                                            class="text-white bg-success bg-gradient rounded-1 py-0 px-1">{{$coupon->old_price - $coupon->new_price}}</span>
+                                            class="text-white bg-success bg-gradient rounded-1 py-0 px-1">{{$coupon->item->old_price - $coupon->new_price}}</span>
                                     </p>
                                 </div>
                             </div>
@@ -29,7 +36,7 @@
                                 {{__('Կուպոնը գործում է մինչև')}}
                             </div>
                             <div class="col-auto text-center">
-                                {{$coupon->end_time}}
+                                {{$coupon->item->end_time}}
                             </div>
                         </div>
                         <div class="col-auto ps-2" data-bs-toggle="modal" data-bs-target="#showQrModal">
@@ -41,7 +48,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Qr</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Qr - {{$coupon->qr}}</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                 aria-label="Close"></button>
                                     </div>

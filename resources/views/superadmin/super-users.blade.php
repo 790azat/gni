@@ -32,8 +32,16 @@
                             <td>{{$user->email}}</td>
                             <td>{{$user->phone}}</td>
                             <td>
-                                @foreach(json_decode($user->coupons) as $coupon)
-                                    {{\App\Models\Items::find($coupon)->name}}<br>
+                                @foreach($user->coupons as $coupon)
+                                    <div class="col-12 text-start">
+                                        @if($coupon->status == 0)
+                                            <p class="text-primary"><i class="fa-solid fa-circle-check me-1"></i>
+                                        @else
+                                            <p class="text-success"><i class="fa-solid fa-check-to-slot me-1"></i>
+                                        @endif
+                                            {{$coupon->item->name}}
+                                        </p>
+                                    </div>
                                 @endforeach
                             </td>
                             <td>{{$user->money}}</td>

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
+use App\Models\Coupons;
 use App\Models\Items;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -46,7 +48,7 @@ class HomeController extends Controller
 
     public function my_coupons() {
         $user = Auth::user();
-        $coupons = Items::whereIn('id',json_decode($user->coupons))->get();
+        $coupons = Coupons::where('owner_id',$user->id)->get();
         return view('user.my-coupons', ['user' => $user,'coupons' => $coupons]);
     }
 
@@ -95,6 +97,51 @@ class HomeController extends Controller
         }
 
         return redirect()->route('home')->with('alert','success%Ձեր նկարը հաջողությամբ փոխվել է');
+
+    }
+
+    public function update_admin_data(Request $request) {
+
+        $admin = User::find(Auth::user()->id);
+        $admin->name = $request->name;
+        $admin->aah = $request->aah;
+        $admin->email = $request->email;
+        $admin->phone = $request->phone;
+        $admin->save();
+
+        return redirect()->route('admin-data')->with('alert','success%Ձեր տվյալները թարմեցվել են');
+
+
+    }
+
+    public function update_admin_password(Request $request) {
+
+        $admin = User::find(Auth::user()->id);
+
+        $hasher = app('hash');
+
+        if ($hasher->check($request->old_password, $admin->password)) {
+
+            if ($request->new_password == $request->confirm_password) {
+
+                $admin->password = Hash::make($request->new_password);
+                $admin->save();
+
+                return redirect()->route('admin-password')->with('alert','success%Ձեր գաղտնաբառը փոխվել է');
+
+            }
+
+            else {
+                return redirect()->route('admin-password')->with('alert','warning%Գաղտնաբառերը չեն համնկնում');
+            }
+
+        }
+        else {
+            return redirect()->route('admin-password')->with('alert','danger%Հին գաղտնաբառը սխալ է');
+        }
+
+
+
 
     }
 }

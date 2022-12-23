@@ -71,6 +71,11 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-key"></i></div>
                         {{__('Գաղտնաբառ')}}
                     </a>
+                    <a class="nav-link @if(Route::currentRouteName() == 'admin-buyers') bg-primary text-light active @endif"
+                       href="{{route('admin-buyers')}}">
+                        <div class="sb-nav-link-icon"><i class="fa-sharp fa-solid fa-cart-shopping"></i></div>
+                        {{__('Գնորդներ')}}
+                    </a>
                 </div>
             </div>
             <div class="sb-sidenav-footer">
@@ -91,6 +96,8 @@
                         <i class="fa-solid fa-folder-open"></i>  {{__('Տվյալներ')}}
                     @elseif(Route::currentRouteName() == 'admin-password')
                         <i class="fa-solid fa-key"></i>  {{__('Գաղտնաբառ')}}
+                    @elseif(Route::currentRouteName() == 'admin-buyers')
+                        <i class="fa-sharp fa-solid fa-cart-shopping"></i>  {{__('Գնորդներ')}}
                     @endif</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item active">{{__('Ադմին վահանակ')}}</li>

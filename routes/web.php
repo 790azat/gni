@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CouponsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoBipController;
 use App\Http\Controllers\ItemController;
@@ -12,6 +13,7 @@ use App\Http\Middleware\IsSuperAdmin;
 use App\Http\Middleware\NotAdmin;
 use App\Mail\SignUp;
 use App\Models\Categories;
+use App\Models\Coupons;
 use App\Models\Items;
 use App\Models\Transaction;
 use App\Models\User;
@@ -36,7 +38,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ItemController::class,'index'])->name('welcome');
 Route::get('/item/{id}', [ItemController::class,'show']);
 Route::get('/category/{id}', [ItemController::class,'show_category']);
-Route::get('/buy-item/{id}', [ItemController::class, 'buy_item'])->middleware('auth');
+
+Route::get('/buy-item/{id}', [CouponsController::class, 'buy_item'])->middleware('auth');
 
 Route::get('/locale/{lang}', [LanguageController::class, 'set_lang']);
 
@@ -75,9 +78,13 @@ Route::middleware([IsAdmin::class])->group(function () {
     Route::post('/update-item',[ItemController::class,'update_item']);
     Route::get('/delete-item/{id}',[ItemController::class,'delete_item']);
     Route::view('/admin-data','admin.admin-data')->name('admin-data');
-    Route::post('/update-admin-data',[ItemController::class,'update_admin_data']);
+    Route::post('/update-admin-data',[HomeController::class,'update_admin_data']);
     Route::view('/admin-password','admin.admin-password')->name('admin-password');
-    Route::post('/update-admin-password',[ItemController::class,'update_admin_password']);
+    Route::post('/update-admin-password',[HomeController::class,'update_admin_password']);
+    Route::get('/admin-buyers', function () {
+        return view('admin.admin-buyers',['coupons' => Coupons::where('item_id',Auth::user()->items->toArray())->get()]);
+    })->name('admin-buyers');
+
 });
 
 //  Super admin
@@ -90,8 +97,9 @@ Route::middleware([IsSuperAdmin::class])->group(function () {
     Route::post('/add-category', [CategoriesController::class,'add_category']);
     Route::get('/delete-category/{id}',[CategoriesController::class, 'delete_category']);
     Route::view('/companies', 'superadmin.super-companies',['companies' => User::where('is_admin',1)->get(),'categories' => Categories::all()])->name('super-companies');
-    Route::view('/super-users', 'superadmin.super-users',['users' => User::where('is_admin',0)->get()])->name('super-users');
+    Route::view('/super-users', 'superadmin.super-users',['users' => User::where('is_admin',0)->where('is_super_admin',0)->get()])->name('super-users');
     Route::view('/super-transactions', 'superadmin.super-transactions',['transactions' => Transaction::all()])->name('super-transactions');
+    Route::view('/super-metrika', 'superadmin.super-metrika')->name('super-metrika');
 });
 
 //  Social auth

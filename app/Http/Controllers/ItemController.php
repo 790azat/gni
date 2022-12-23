@@ -41,58 +41,6 @@ class ItemController extends Controller
 
     }
 
-    public function buy_item($id) {
-
-        if (Items::find($id) !== null and Items::find($id)->status == 1) {
-            $old_coupons = Auth::user()->coupons;
-
-            if ($old_coupons == null) {
-                $array = [];
-            }
-            else {
-                $array = json_decode($old_coupons);
-            }
-
-            if (in_array($id,$array)) {
-                return back()->with('alert','warning%Դուք արդեն ունեք այս զեղչը.');
-            }
-            if (Auth::user()->money >= 300) {
-
-                array_push($array,$id);
-                $array = json_encode($array);
-
-                $user = User::find(Auth::user()->id);
-                $user->coupons = $array;
-                $user->money = $user->money - 300;
-                $user->save();
-
-                $item = Items::find($id);
-                $item->buy_count++;
-                $item->save();
-
-                Transaction::create([
-                    'buyer_id' => Auth::user()->id,
-                    'item_id' => $id,
-                    'price' => 300,
-                    'status' => 'pending',
-                    'idram' => '790790'
-                ]);
-
-                return redirect()->route('my-coupons')->with('alert','success%Դուք հաջողությամբ գնեցիք զեղչը');
-
-            }
-            else {
-                return back()->with('alert','danger%Դուք չունեք բավարար գումար');
-            }
-
-
-        }
-        else {
-            return back()->with('alert','danger%Այդպիսի ակցիա գոյություն չունի');
-        }
-
-    }
-
     public function add_item(Request $request) {
 
         $item = new Items;
@@ -183,51 +131,6 @@ class ItemController extends Controller
         $item->save();
 
         return redirect()->route('home')->with('alert','success%Ակցիան հաջողութթյամբ փոփոխված է');
-
-    }
-
-    public function update_admin_data(Request $request) {
-
-        $admin = User::find(Auth::user()->id);
-        $admin->name = $request->name;
-        $admin->aah = $request->aah;
-        $admin->email = $request->email;
-        $admin->phone = $request->phone;
-        $admin->save();
-
-        return redirect()->route('admin-data')->with('alert','success%Ձեր տվյալները թարմեցվել են');
-
-
-    }
-
-    public function update_admin_password(Request $request) {
-
-        $admin = User::find(Auth::user()->id);
-
-        $hasher = app('hash');
-
-        if ($hasher->check($request->old_password, $admin->password)) {
-
-            if ($request->new_password == $request->confirm_password) {
-
-                $admin->password = Hash::make($request->new_password);
-                $admin->save();
-
-                return redirect()->route('admin-password')->with('alert','success%Ձեր գաղտնաբառը փոխվել է');
-
-            }
-
-            else {
-                return redirect()->route('admin-password')->with('alert','warning%Գաղտնաբառերը չեն համնկնում');
-            }
-
-        }
-        else {
-            return redirect()->route('admin-password')->with('alert','danger%Հին գաղտնաբառը սխալ է');
-        }
-
-
-
 
     }
 
