@@ -36,7 +36,7 @@ class HomeController extends Controller
             return view('admin.admin',['items' => $items,'categories' => $categories]);
         }
         elseif (Auth::user()->is_super_admin == 1) {
-            $items = Items::all();
+            $items = Items::with('owner')->get();
             $categories = Categories::all();
             return view('superadmin.super-admin',['items' => $items,'categories' => $categories]);
         }
@@ -54,8 +54,7 @@ class HomeController extends Controller
 
     public function my_bonuses() {
         $user = Auth::user();
-        $bonuses = $user->bonuses;
-        return view('user.my-bonuses', ['user' => $user,'bonuses' => $bonuses]);
+        return view('user.my-bonuses', ['user' => $user]);
     }
 
     public function my_wallet() {

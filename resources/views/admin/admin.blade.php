@@ -39,7 +39,7 @@
                                 <td class="text-nowrap">{{$item->end_time}}</td>
                                 <td>{{$item->old_price}}</td>
                                 <td>{{$item->new_price}}</td>
-                                <td>{{$item->buy_count}}</td>
+                                <td>{{count($item->coupons)}}</td>
                                 <td class="text-nowrap">{{explode(' ',$item->created_at)[0]}}<br>{{explode(' ',$item->created_at)[1]}}</td>
                                 <td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit-item-modal{{$item->id}}"><i class="fa-solid fa-pen-to-square"></i></button></td>
                                 <td><button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-item-modal{{$item->id}}"><i class="fa-solid fa-trash"></i></button></td>
@@ -83,16 +83,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="mb-3 d-flex gap-3">
-                                                    <div class="col">
-                                                        <label for="main_image" class="form-label">{{__('Գլխավոր նկար')}}</label>
-                                                        <input type="file" class="form-control" id="main_image" name="main_image">
-                                                    </div>
-                                                    <div class="col">
-                                                        <label for="images" class="form-label">{{__('Նկարներ')}}</label>
-                                                        <input type="file" accept="image/*" multiple class="form-control" id="images" name="images[]">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 d-flex gap-3">
                                                     <div class="col d-flex gap-3">
                                                         <div class="col">
                                                             <label for="start_time" class="form-label">{{__('Սկիզբ')}}</label>
@@ -114,6 +104,30 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="mb-3 d-flex gap-3">
+                                                    <div class="col">
+                                                        <label for="main_image" class="form-label">{{__('Գլխավոր նկար')}}</label>
+                                                        <input type="file" class="form-control" id="main_image" name="main_image">
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="images" class="form-label">{{__('Նկարներ')}}</label>
+                                                        <input type="file" accept="image/*" multiple class="form-control" id="images" name="images[]">
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3 d-flex gap-3 justify-content-center">
+                                                    <div class="col">
+                                                        <img src="{{asset('storage/images/' . $item->main_image)}}" style="width: 100%;height: auto" class="img-thumbnail" alt="">
+                                                    </div>
+                                                    <div class="col row row-cols-2 px-2 overflow-scroll" style="height: 230px">
+                                                        @foreach(json_decode($item->images) as $image)
+                                                            <div class="col p-0">
+                                                                <div class="me-1 mb-1">
+                                                                    <img src="{{asset('storage/images/' . $image)}}" class="img-thumbnail" style="width: 100%;height: auto" alt="">
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('Փակել')}}</button>
@@ -133,10 +147,17 @@
                                         </div>
                                         <div class="modal-body">
                                             Դուք ցանկանում եք հեռացնել <span class="fw-bold">{{$item->name}}</span> ակցիան ?
+                                            @if(count($item->coupons) > 0)
+                                                <br><div class="alert-danger text-center p-2 rounded mt-2">Ակցիան դեռ ունի <span class="fw-bold">{{count($item->coupons)}}</span> գնորդ !!!</div>
+                                            @endif
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Փակել</button>
-                                            <button type="button" class="btn btn-danger"><a href="delete-item/{{$item->id}}">Հեռացնել</a></button>
+                                            @if(count($item->coupons) == 0)
+                                                <button type="button" class="btn btn-danger"><a href="delete-item/{{$item->id}}">Հեռացնել</a></button>
+                                            @else
+                                                <button type="button" class="btn btn-primary"><a href="{{route('admin-buyers')}}">Դիտել գնորդներին</a></button>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

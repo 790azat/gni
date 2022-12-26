@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\InfoBipController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\ReferralController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\VerifyController;
 use App\Http\Middleware\IsAdmin;
@@ -17,6 +18,7 @@ use App\Models\Coupons;
 use App\Models\Items;
 use App\Models\Transaction;
 use App\Models\User;
+use http\Client\Request;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +35,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/register-referral', [ReferralController::class,'register']);
 
 
 Route::get('/', [ItemController::class,'index'])->name('welcome');
@@ -82,7 +86,7 @@ Route::middleware([IsAdmin::class])->group(function () {
     Route::view('/admin-password','admin.admin-password')->name('admin-password');
     Route::post('/update-admin-password',[HomeController::class,'update_admin_password']);
     Route::get('/admin-buyers', function () {
-        return view('admin.admin-buyers',['coupons' => Coupons::where('item_id',Auth::user()->items->toArray())->get()]);
+        return view('admin.admin-buyers',['coupons' => Coupons::whereRelation('item','owner_id',Auth::user()->id)->get()]);
     })->name('admin-buyers');
 
 });

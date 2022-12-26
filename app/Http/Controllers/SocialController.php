@@ -39,7 +39,8 @@ class SocialController extends Controller
                     'phone_temp_key' => rand(100000,999999),
                     'password' => encrypt('user'),
                     'email_verified_at' => now(),
-                    'money' => 400
+                    'money' => 400,
+                    'referral_link' => (new ReferralController)->generate_link()
                 ]);
 
                 Auth::login($createUser);
@@ -83,7 +84,9 @@ class SocialController extends Controller
                     'phone_temp_key' => rand(100000,999999),
                     'password' => encrypt('user'),
                     'email_verified_at' => now(),
-                    'money' => 400
+                    'money' => 400,
+                    'referral_link' => (new ReferralController)->generate_link()
+
                 ]);
 
                 Auth::login($createUser);

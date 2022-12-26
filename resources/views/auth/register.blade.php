@@ -9,6 +9,9 @@
                 </div>
                 <form class="col-sm-7 d-flex p-5 px-4 px-sm-5 pt-4 pb-3 bg-light flex-wrap align-content-center" method="POST" action="{{ route('register') }}">
                     @csrf
+                    @if(isset($_GET['referrer']))
+                        <input type="text" value="{{$_GET['referrer']}}" class="d-none" name="referrer">
+                    @endif
                     <div class="col-12 mb-1 d-flex gap-3">
                         <div class="col">
                             <div class="col-12 mb-1">

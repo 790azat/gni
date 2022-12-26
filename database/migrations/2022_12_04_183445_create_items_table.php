@@ -27,7 +27,6 @@ return new class extends Migration
             $table->string('end_time');
             $table->string('old_price');
             $table->string('new_price');
-            $table->integer('buy_count')->nullable()->default(0);
             $table->timestamps();
         });
     }

@@ -16,7 +16,6 @@
                     <th>էլ. հասցե</th>
                     <th>Հեռախոս</th>
                     <th>Կուպոններ</th>
-                    <th>Գումար</th>
                     <th>Ստեղծումը</th>
                 </tr>
                 </thead>
@@ -30,7 +29,6 @@
                             <td>{{$coupon->owner->email}}</td>
                             <td>{{$coupon->owner->phone}}</td>
                             <td>{{$coupon->item->name}}</td>
-                            <td>{{$coupon->owner->money}}</td>
                             <td>{{$coupon->created_at}}</td>
                         </tr>
                     @endforeach

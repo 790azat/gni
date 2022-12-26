@@ -14,7 +14,11 @@ class Items extends Model
     }
 
     public function owner() {
-        return $this->belongsTo(User::class,'owner_id');
+        return $this->belongsTo(User::class,'owner_id','id');
+    }
+
+    public function coupons() {
+        return $this->hasMany(Coupons::class,'item_id','id');
     }
 
 }

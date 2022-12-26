@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\InfoBipController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\ReferralController;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -86,6 +87,8 @@ class RegisterController extends Controller
             (new \App\Http\Controllers\MailController)->send_mail($email,$code);
             (new \App\Http\Controllers\InfoBipController)->send($data['phone'],$phone_code);
 
+            $referrer = User::where('referral_link',$data['referrer'])->first()->id;
+
             return User::create([
                 'name' => $data['name'],
                 'surname' => $data['surname'],
@@ -94,7 +97,10 @@ class RegisterController extends Controller
                 'money' => 100,
                 'password' => Hash::make($data['password']),
                 'temp_key' => $code,
-                'phone_temp_key' => $phone_code
+                'phone_temp_key' => $phone_code,
+                'referral_link' => (new ReferralController)->generate_link(),
+                'referral_id' => $referrer
+
             ]);
 
         }

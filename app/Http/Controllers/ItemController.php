@@ -55,7 +55,6 @@ class ItemController extends Controller
         $item->end_time = $request->end_time;
         $item->old_price = $request->old_price;
         $item->new_price = $request->new_price;
-        $item->buy_count = 0;
 
         $item->main_image = time() . '-' . $request->main_image->getClientOriginalName();
         $request->file('main_image')->storeAs('images',time() . '-' . $request->main_image->getClientOriginalName(),'public');
@@ -101,6 +100,10 @@ class ItemController extends Controller
 
         $item = Items::find($request->id);
 
+        if ($item->status == 1) {
+            $item->status = 0;
+        }
+
         $item->name = $request->name;
         $item->categories_id = $request->category;
         $item->text = $request->text;
@@ -130,7 +133,7 @@ class ItemController extends Controller
 
         $item->save();
 
-        return redirect()->route('home')->with('alert','success%Ակցիան հաջողութթյամբ փոփոխված է');
+        return redirect()->route('home')->with('alert','success%Ակցիան հաջողութթյամբ փոփոխված է, սպասեք մոդերացիային');
 
     }
 
@@ -138,14 +141,22 @@ class ItemController extends Controller
 
         $item = Items::find($id);
 
-        if (Auth::user()->id == Items::find($id)->owner) {
-            $item->delete();
-        }
-        else {
-            return back();
+        if (count($item->coupons) == 0) {
+
+            if (Auth::user()->id == $item->owner or Auth::user()->is_super_admin == 1) {
+                $item->delete();
+            }
+            else {
+                return back();
+            }
+
+            return back()->with('alert', 'danger%Ակցիան հաջողութթյամբ հեռացված է');
+
         }
 
-        return redirect()->route('home')->with('alert', 'danger%Ակցիան հաջողութթյամբ հեռացված է');
+        else {
+            return back()->with('alert', 'danger%Ակցիան ունի գնորդներ');
+        }
 
     }
 

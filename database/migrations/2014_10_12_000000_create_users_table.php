@@ -30,6 +30,8 @@ return new class extends Migration
             $table->string('facebook_id')->nullable();
             $table->string('google_id')->nullable();
             $table->integer('money')->default(0);
+            $table->string('referral_id')->nullable();
+            $table->string('referral_link')->nullable();
             $table->integer('bonuses')->default(100);
             $table->string('avatar')->default('avatar.png');
             $table->timestamps();

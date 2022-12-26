@@ -78,7 +78,7 @@
                 </div>
                 <div class="col-12 d-none d-sm-flex gap-3 justify-content-center align-items-center">
                     <div class="col-auto">
-                        <p>{{__('Գնված է')}}: <span class="text-success fw-bold">{{$item->buy_count}}</span></p>
+                        <p>{{__('Գնված է')}}: <span class="text-success fw-bold">{{count($item->coupons)}}</span></p>
                     </div>
                     <div class="col-auto">
                         <a href="/buy-item/{{$item->id}}">
@@ -109,7 +109,7 @@
                         <p class="text-success">{{$item->new_price}} դր.</p>
                     </div>
                     <div class="text-center">
-                        <p>Գնված է: <span class="text-success fw-bold">{{$item->buy_count}}</span></p>
+                        <p>Գնված է: <span class="text-success fw-bold">{{count($item->coupons)}}</span></p>
                     </div>
                 </div>
             </div>

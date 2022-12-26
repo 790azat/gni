@@ -24,6 +24,10 @@ class User extends Authenticatable
         return $this->hasMany(Coupons::class,'owner_id');
     }
 
+    public function referrals() {
+        return $this->hasMany(User::class,'referral_id');
+    }
+
 
 
     /**
@@ -45,6 +49,8 @@ class User extends Authenticatable
         'temp_key',
         'phone_temp_key',
         'money',
+        'referral_link',
+        'referral_id',
         'avatar',
         'email_verified_at'
     ];
