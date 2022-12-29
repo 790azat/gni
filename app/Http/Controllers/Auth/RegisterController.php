@@ -87,7 +87,12 @@ class RegisterController extends Controller
             (new \App\Http\Controllers\MailController)->send_mail($email,$code);
             (new \App\Http\Controllers\InfoBipController)->send($data['phone'],$phone_code);
 
-            $referrer = User::where('referral_link',$data['referrer'])->first()->id;
+            if (isset($data['referrer'])) {
+                $referrer_id = User::where('referral_link',$data['referrer'])->first()->id;
+            }
+            else {
+                $referrer_id = null;
+            }
 
             return User::create([
                 'name' => $data['name'],
@@ -99,8 +104,7 @@ class RegisterController extends Controller
                 'temp_key' => $code,
                 'phone_temp_key' => $phone_code,
                 'referral_link' => (new ReferralController)->generate_link(),
-                'referral_id' => $referrer
-
+                'referrer_id' => $referrer_id
             ]);
 
         }

@@ -25,7 +25,7 @@ class User extends Authenticatable
     }
 
     public function referrals() {
-        return $this->hasMany(User::class,'referral_id');
+        return $this->hasMany(User::class,'referrer_id');
     }
 
 
@@ -50,7 +50,7 @@ class User extends Authenticatable
         'phone_temp_key',
         'money',
         'referral_link',
-        'referral_id',
+        'referrer_id',
         'avatar',
         'email_verified_at'
     ];
