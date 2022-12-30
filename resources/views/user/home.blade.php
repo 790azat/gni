@@ -80,7 +80,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{__('Փակել')}}</button>
-                                            <a href="/resend/{{$user->id}}/{{$user->email}}"><button type="button" class="btn btn-primary">{{__('Ուղղարկել նամակ')}}</button></a>
+                                            @livewire('send-code-email')
                                         </div>
                                     </div>
                                 </div>

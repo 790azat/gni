@@ -57,6 +57,9 @@
                     </div>
                 @endif
                 <div class="d-flex justify-content-center align-items-center gap-2">
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#searchModal" class="btn text-light" style="background: #3b3b3b">
+                        <p><i class="fa-solid fa-search"></i></p>
+                    </button>
                     <button class="btn text-light dropdown-toggle d-flex justify-content-center align-items-center gap-1" style="background: #3b3b3b;font-size: 13px" data-bs-toggle="dropdown" aria-expanded="false">@if(Auth::user()->is_admin == 1) <i class="fa-solid fa-people-group"></i> @elseif(Auth::user()->is_super_admin == 1) <i class="fa-solid fa-crown"></i> @else <i class="fa-solid fa-user-circle me-1"></i> @endif {{Auth::user()->name}}</button>
                     <ul class="dropdown-menu dropdown-menu-end">
                         <li><a class="dropdown-item d-flex justify-content-center align-items-center" href="{{route('home')}}">@if(Auth::user()->is_admin == 1 or Auth::user()->is_super_admin == 1)<i class="fa-solid fa-gauge me-1"></i> {{__('Ադմին')}} @else <i class="fa-solid fa-hand-holding-heart me-1"></i> {{__('Իմ կուպոններ')}} @endif</a></li>
@@ -69,5 +72,15 @@
                 </div>
             </div>
         @endauth
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                @livewire('search-items')
+            </div>
+        </div>
     </div>
 </div>

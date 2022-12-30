@@ -9,7 +9,7 @@
                     <div class="col-12 d-flex gap-3 justify-content-center align-items-center mb-3">
                         <p>Ձեր հրավերի կոդն է</p>
                         <div class="btn-group">
-                            <button data-text="{{$user->referral_link}}" class="btn text-nowrap fw-bold btn-outline-success">
+                            <button class="btn text-nowrap fw-bold btn-outline-success">
                                 {{$user->referral_link}}
                             </button>
                             <button id="copyBtn1" data-text="{{$user->referral_link}}" class="btn text-nowrap fw-bold btn-outline-success">
@@ -25,14 +25,9 @@
                             <i class="fa-regular fa-copy"></i>
                         </button>
                     </div>
-                    @if($user->referrer_id == null)
-                        <div class="col-12">
-                            <form action="/register-referral" method="get">
-                                <input name="link" type="text">
-                                <button type="submit" class="btn btn-primary">Հաստատել</button>
-                            </form>
-                        </div>
-                    @endif
+                    <div class="col-12 mt-3">
+                        @livewire('referral',['user' => $user])
+                    </div>
                 </div>
                 <div class="col p-3 d-flex flex-wrap justify-content-center align-content-center bg-white rounded-1 border border-1 border-opacity-10 border-secondary">
                     <div class="col-12">

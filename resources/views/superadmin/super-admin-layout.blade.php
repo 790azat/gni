@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/png" href="{{ asset('images/gni.png') }}"/>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @livewireStyles
     <title>Gni</title>
 </head>
 <body @if(session('alert')) onload="$('.toast').toast('show');" @endif class="sb-nav-fixed" style="background: white">
@@ -24,17 +25,12 @@
     <!-- Sidebar Toggle-->
     <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
         <i class="fas fa-bars"></i></button>
-    <!-- Navbar Search-->
-    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-        <div class="input-group">
-            <input class="form-control" type="text" placeholder="Որոնում ..." aria-label="Search for..."
-                   aria-describedby="btnNavbarSearch"/>
-            <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-        </div>
-    </form>
     <!-- Navbar-->
-    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4 text-light">
+    <ul class="navbar-nav ms-auto me-3 me-lg-4 text-light">
         <div class="d-flex justify-content-center align-items-center gap-2">
+            <button type="button" data-bs-toggle="modal" data-bs-target="#searchModal" class="btn text-light" style="background: #3b3b3b">
+                <p><i class="fa-solid fa-search"></i></p>
+            </button>
             <a class="text-hover btn" style="background: #3b3b3b" href="{{ route('logout') }}"
                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <p><i class="fa-solid fa-right-from-bracket me-1"></i> {{__('Ելք')}}</p>
@@ -174,6 +170,17 @@
         </footer>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                @livewire('search-items')
+            </div>
+        </div>
+    </div>
+</div>
+@livewireScripts
 @include('components.scripts')
 </body>
 </html>
