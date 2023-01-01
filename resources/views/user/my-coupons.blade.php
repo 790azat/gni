@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <div class="col-auto ps-2" data-bs-toggle="modal" data-bs-target="#showQrModal">
-                            <img src="{{asset('images/qr.png')}}" style="width: 50px;height: auto" alt="">
+                            <img src="{{asset('storage/qr/' . $coupon->qr)}}" style="width: 50px;height: auto" alt="">
                         </div>
                         <!-- Modal -->
                         <div class="modal fade" id="showQrModal" tabindex="-1" aria-labelledby="showQrModalLabel"
@@ -54,7 +54,7 @@
                                     </div>
                                     <div class="modal-body py-3">
                                         <div class="col-8 mx-auto">
-                                            <img src="{{asset('images/qr.png')}}" style="width: 100%;height: auto"
+                                            <img src="{{asset('storage/qr/' . $coupon->qr)}}" style="width: 100%;height: auto"
                                                  alt="">
                                         </div>
                                     </div>

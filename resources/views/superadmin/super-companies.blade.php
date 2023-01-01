@@ -6,7 +6,7 @@
             <i class="fa-solid fa-people-group me-1"></i>
             {{__('Ընկերութթյուններ')}}
         </div>
-        <div class="card-body">
+        <div class="card-body overflow-scroll">
             <table id="datatablesSimple" class="table table-bordered table-hover">
                 <thead class="text-center">
                 <tr>
@@ -128,7 +128,6 @@
                                     </div>
                                 @endforeach
                             </td>
-
                         </tr>
                     @endforeach
                 @endif

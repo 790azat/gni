@@ -37,7 +37,7 @@
             <i class="fa-solid fa-file-circle-plus me-1"></i>
             Категории
         </div>
-        <div class="card-body">
+        <div class="card-body overflow-scroll">
             <table id="datatablesSimple" class="table table-bordered table-hover text-center">
                 <thead>
                 <tr>

@@ -6,7 +6,7 @@
             <i class="fas fa-table me-1"></i>
             Ձեր ակցիաները
         </div>
-        <div class="card-body">
+        <div class="card-body overflow-scroll">
             <table id="datatablesSimple" class="table table-bordered table-hover">
                 <thead class="text-center">
                 <tr>

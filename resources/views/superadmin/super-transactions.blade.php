@@ -6,7 +6,7 @@
             <i class="fa-sharp fa-solid fa-cash-register me-1"></i></i>
             {{__('Վճարումներ')}}
         </div>
-        <div class="card-body">
+        <div class="card-body overflow-scroll">
             <table id="datatablesSimple" class="table table-bordered table-hover">
                 <thead class="text-center">
                 <tr>

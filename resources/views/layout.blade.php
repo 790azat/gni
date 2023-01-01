@@ -13,14 +13,10 @@
     <title>Gni</title>
 </head>
 <body @if(session('alert')) onload="$('.toast').toast('show');" @endif style="background: #309847">
-    @if(Route::currentRouteName() == 'welcome' or explode('/',Route::current()->uri)[0] == 'category')
-        @include('components.sidebar')
-    @endif
+    @include('components.sidebar')
     @include('components.alert')
     @include('components.header')
-    <div class="col-12">
-        @include('components.snow')
-    </div>
+    @include('components.snow')
     @yield('content')
     @include('components.scripts')
     @livewireScripts
