@@ -111,13 +111,108 @@
                                 </div>
                             </div>
                         </a>
-{{--                        <div class="d-block col-xl-3 col-md-6">--}}
-{{--                            <div class="card bg-warning text-white mb-4">--}}
-{{--                                <div class="card-body text-center"><i class="fa-solid fa-file-pen me-1"></i>--}}
-{{--                                    Редактировать--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+                        <a href="{{route('add-location')}}" class="d-block col-xl-3 col-md-6" data-bs-toggle="modal" data-bs-target="#addLocationModal">
+                            <div class="card bg-primary text-white mb-4">
+                                <div class="card-body text-center"><i class="fa-solid fa-location-dot me-1"></i>
+                                    {{__('Հասցե')}}
+                                </div>
+                            </div>
+                        </a>
+                        <!-- Modal -->
+                        <div class="modal fade" id="addLocationModal" tabindex="-1" aria-labelledby="addLocationModal" aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div>
+                                        <div>
+                                            <style type="text/css">
+                                                #map{ width:100%; height: 500px; }
+                                            </style>
+                                            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+                                            <script>
+                                                //map.js
+
+                                                //Set up some of our variables.
+                                                var map; //Will contain map object.
+                                                var marker = false; ////Has the user plotted their location marker?
+
+                                                //Function called to initialize / create the map.
+                                                //This is called when the page has loaded.
+                                                function initMap() {
+
+                                                    //The center location of our map.
+                                                    var centerOfMap = new google.maps.LatLng(@if(Auth::user()->location != '{"lat":null,"lng":null}') {{json_decode(\Illuminate\Support\Facades\Auth::user()->location)->lat}},{{json_decode(\Illuminate\Support\Facades\Auth::user()->location)->lng}} @else 40.183019, 44.514779 @endif);
+
+                                                    //Map options.
+                                                    var options = {
+                                                        center: centerOfMap, //Set center.
+                                                        zoom: 14 //The zoom value.
+                                                    };
+
+                                                    //Create the map object.
+                                                    map = new google.maps.Map(document.getElementById('map'), options);
+
+                                                    //Listen for any clicks on the map.
+                                                    google.maps.event.addListener(map, 'click', function(event) {
+                                                        //Get the location that the user clicked.
+                                                        var clickedLocation = event.latLng;
+                                                        //If the marker hasn't been added.
+                                                        if(marker === false){
+                                                            //Create the marker.
+                                                            marker = new google.maps.Marker({
+                                                                position: clickedLocation,
+                                                                map: map,
+                                                                draggable: true //make it draggable
+                                                            });
+                                                            //Listen for drag events!
+                                                            google.maps.event.addListener(marker, 'dragend', function(event){
+                                                                markerLocation();
+                                                            });
+                                                        } else{
+                                                            //Marker has already been added, so just change its location.
+                                                            marker.setPosition(clickedLocation);
+                                                        }
+                                                        //Get the marker's location.
+                                                        markerLocation();
+                                                    });
+                                                }
+
+                                                //This function will get the marker's current location and then add the lat/long
+                                                //values to our textfields so that we can save the location.
+                                                function markerLocation(){
+                                                    //Get location.
+                                                    var currentLocation = marker.getPosition();
+                                                    //Add lat and lng values to a field that we can save.
+                                                    document.getElementById('lat').value = currentLocation.lat(); //latitude
+                                                    document.getElementById('lng').value = currentLocation.lng(); //longitude
+                                                }
+
+
+                                                //Load the map when the page has finished loading.
+                                                google.maps.event.addDomListener(window, 'load', initMap);
+                                            </script>
+                                        </div>
+                                        <div>
+                                        <!--map div-->
+                                        <div id="map"></div>
+                                        <!--our form-->
+                                        <form method="post" action="/save-location" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="text" name="lat" id="lat" readonly class="d-none">
+                                            <input type="text" name="lng" id="lng" readonly class="d-none">
+
+                                        <script type="text/javascript" src="map.js"></script>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Փակել</button>
+                                        <button type="submit" class="btn btn-primary">Հաստատել</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
 {{--                        <a href="{{route('categories')}}" class="d-block col-xl-3 col-md-6">--}}
 {{--                            <div class="card bg-primary text-white mb-4">--}}
 {{--                                <div class="card-body text-center"><i class="fa-solid fa-code-branch me-1"></i>--}}

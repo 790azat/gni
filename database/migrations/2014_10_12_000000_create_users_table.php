@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('referral_link')->nullable();
             $table->integer('bonuses')->default(100);
             $table->string('avatar')->default('avatar.png');
+            $table->string('location')->nullable();
             $table->timestamps();
         });
     }

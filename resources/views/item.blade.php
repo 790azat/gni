@@ -125,6 +125,11 @@
         <div class="col-12 p-5 pt-1">
             {{$item->info}}
         </div>
+        @if($item->owner->location != '{"lat":null,"lng":null}')
+            <a href="{{'https://maps.google.com/maps?q='. json_decode($item->owner->location)->lat .','. json_decode($item->owner->location)->lng . '&hl=es&z=14&amp;output=embed'}}" style="color:#0000FF;text-align:left" target="_blank">
+                <button class="btn btn-primary"><i class="fa-solid fa-location-dot me-1"></i> Քարտեզ</button>
+            </a>
+        @endif
     </div>
     @include('components.footer')
 @endsection

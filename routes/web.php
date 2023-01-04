@@ -79,6 +79,8 @@ Route::middleware([Authenticate::class, NotAdmin::class])->group(function () {
 Route::middleware([IsAdmin::class])->group(function () {
     Route::view('/add-item', 'admin.add-item' , ['categories' => Categories::all()])->name('add-item');
     Route::post('/add-item',[ItemController::class,'add_item']);
+    Route::view('/add-location', 'admin.add-location')->name('add-location');
+    Route::post('/save-location', [HomeController::class, 'save_location']);
     Route::post('/update-item',[ItemController::class,'update_item']);
     Route::get('/delete-item/{id}',[ItemController::class,'delete_item']);
     Route::view('/admin-data','admin.admin-data')->name('admin-data');

@@ -52,7 +52,8 @@ class User extends Authenticatable
         'referral_link',
         'referrer_id',
         'avatar',
-        'email_verified_at'
+        'email_verified_at',
+        'location',
     ];
 
     /**

@@ -143,4 +143,20 @@ class HomeController extends Controller
 
 
     }
+
+    public function save_location(Request $request) {
+
+        $lat = $request->lat;
+        $lng = $request->lng;
+
+        $location = json_encode(['lat' => $lat,'lng' => $lng]);
+
+        $firm = Auth::user();
+        $firm->location = $location;
+        $firm->save();
+
+        return back()->with('alert','primary%Ձեր հասցեն հաջողությամբ պահպանված է');
+
+    }
+
 }
