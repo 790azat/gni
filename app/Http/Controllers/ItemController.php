@@ -15,7 +15,7 @@ class ItemController extends Controller
 {
     public function index() {
 
-        $items = Items::where('status',1)->get();
+        $items = Items::where('status',1)->paginate(12);
         $categories = Categories::all();
         return view('welcome',['items' => $items,'categories' => $categories]);
 

@@ -141,7 +141,7 @@
                                                 function initMap() {
 
                                                     //The center location of our map.
-                                                    var centerOfMap = new google.maps.LatLng(@if(Auth::user()->location != '{"lat":null,"lng":null}') {{json_decode(\Illuminate\Support\Facades\Auth::user()->location)->lat}},{{json_decode(\Illuminate\Support\Facades\Auth::user()->location)->lng}} @else 40.183019, 44.514779 @endif);
+                                                    var centerOfMap = new google.maps.LatLng(@if(Auth::user()->location != null) {{json_decode(\Illuminate\Support\Facades\Auth::user()->location)->lat}},{{json_decode(\Illuminate\Support\Facades\Auth::user()->location)->lng}} @else 40.183019, 44.514779 @endif);
 
                                                     //Map options.
                                                     var options = {

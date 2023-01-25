@@ -12,11 +12,11 @@
                         @csrf
                         <div class="col-12 mb-3 d-flex flex-nowrap align-items-center">
                             <p class="fs-4 text-nowrap">{{__('Մուտք')}}</p>
-                            <a href="{{route('auth.facebook')}}" target="_blank" class="btn btn-light p-1 ms-auto rounded-circle border d-flex justify-content-center align-content-center" style="width: 40px;height: 40px">
+                            <a href="https://www.facebook.com/www.gni.am" target="_blank" class="btn btn-light p-1 ms-auto rounded-circle border d-flex justify-content-center align-content-center" style="width: 40px;height: 40px">
                                 <i class="fa-brands fa-facebook-f d-flex justify-content-center align-items-center text-center align-self-center" style="line-height: inherit;font-size: inherit"></i>
                             </a>
-                            <a href="https://www.facebook.com/frideestudio" target="_blank" class="btn btn-light p-1 ms-1 rounded-circle border d-flex justify-content-center align-content-center" style="width: 40px;height: 40px">
-                                <i class="fa-brands fa-linkedin-in d-flex justify-content-center align-items-center text-center align-self-center" style="line-height: inherit;font-size: inherit"></i>
+                            <a href="https://www.facebook.com/www.gni.am" target="_blank" class="btn btn-light p-1 ms-1 rounded-circle border d-flex justify-content-center align-content-center" style="width: 40px;height: 40px">
+                                <i class="fa-brands fa-instagram d-flex justify-content-center align-items-center text-center align-self-center" style="line-height: inherit;font-size: inherit"></i>
                             </a>
                         </div>
                         <div class="col-12 mb-1">

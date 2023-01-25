@@ -79,8 +79,12 @@
                     <div class="col-12 mb-1">
                         <label for="password-confirm" class="fw-bold">{{__('Հաստատել ծածկագիրը')}}</label>
                     </div>
-                    <div class="col-12 mb-4">
+                    <div class="col-12 mb-3">
                         <input id="password-confirm" placeholder="Confirm password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                    </div>
+                    <div class="col-12 mb-3 d-flex align-items-start gap-2">
+                        <input type="checkbox" class="form-check-input m-0" required>
+                        <p style="line-height: normal;font-size: 12px">{{ __('Ես կարդացի և համաձայն եմ') }} <a href="{{ route('privacy') }}" target="_blank" class="d-inline text-decoration-underline text-primary text-nowrap"> {{ __('Կանոնադրությանը') }}</a></p>
                     </div>
                     <div class="col-12 mb-3">
                         <button type="submit" class="btn btn-success col-12">{{__('Գրանցվել')}}</button>

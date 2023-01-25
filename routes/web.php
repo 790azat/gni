@@ -47,6 +47,8 @@ Route::get('/buy-item/{id}', [CouponsController::class, 'buy_item'])->middleware
 
 Route::get('/locale/{lang}', [LanguageController::class, 'set_lang']);
 
+Route::view('/privacy', 'privacy.privacy')->name('privacy');
+
 //  User admin
 
 Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');

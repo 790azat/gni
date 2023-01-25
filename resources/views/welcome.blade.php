@@ -41,6 +41,9 @@
                 </a>
             @endforeach
         </div>
+        <div class="col-12 mt-3 d-flex justify-content-center">
+            {{$items->links()}}
+        </div>
     </div>
     @include('components.footer')
 @endsection

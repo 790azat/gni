@@ -1,5 +1,4 @@
-{
-    "Մուտք": "Login",
+{   "Մուտք": "Login",
     "Գրանցվել": "Register",
     "Գրանցվեք, հաստատեք Ձեր Էլ. հասցեն և ստացեք": "Register, confirm your email. address and receive",
     "դրամ նվեր Ձեր հաշվին": "dram gift to your account",
@@ -66,5 +65,7 @@
     "Կատեգորիան հաջողությամբ հեռացված է": "Category removed successfully",
     "Ֆիլտեր": "Filter",
     "Դասակարգել": "sorting",
-    "Այլ": "Other"
+    "Այլ": "Other",
+    "Ես կարդացի և համաձայն եմ": "I have reed and agreed",
+    "Կանոնադրությանը": "Privacy & policy"
 }

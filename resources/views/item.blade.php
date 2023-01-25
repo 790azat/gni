@@ -82,7 +82,7 @@
                     </div>
                     <div class="col-auto">
                         <a href="/buy-item/{{$item->id}}">
-                            <button class="btn btn-success"><i class="fa-solid fa-cart-shopping me-1"></i> {{__('Գնել')}}</button>
+                            <button class="btn btn-success"><i class="fa-solid fa-cart-shopping me-1"></i> Գնել 1000{{ __('դր.') }}</button>
                         </a>
                     </div>
                 </div>
@@ -118,14 +118,14 @@
         <div class="col-12 mt-1 d-flex d-sm-none gap-3 justify-content-center align-items-center">
             <div class="col-12 d-flex justify-content-center">
                 <a href="/buy-item/{{$item->id}}" class="col-10 mx-auto">
-                    <button class="col-12 text-nowrap btn text-light border-0 px-5 py-3 fs-4" style="background: linear-gradient(to top,#009341,#1cbb1c)"><i class="fa-solid fa-cart-shopping me-1"></i> Գնել</button>
+                    <button class="col-12 text-nowrap btn text-light border-0 px-5 py-3 fs-4" style="background: linear-gradient(to top,#009341,#1cbb1c)"><i class="fa-solid fa-cart-shopping me-1"></i> Գնել 1000{{ __('դր.') }}</button>
                 </a>
             </div>
         </div>
         <div class="col-12 p-5 pt-1">
             {{$item->info}}
         </div>
-        @if($item->owner->location != '{"lat":null,"lng":null}')
+        @if($item->owner->location != null)
             <a href="{{'https://maps.google.com/maps?q='. json_decode($item->owner->location)->lat .','. json_decode($item->owner->location)->lng . '&hl=es&z=14&amp;output=embed'}}" style="color:#0000FF;text-align:left" target="_blank">
                 <button class="btn btn-primary"><i class="fa-solid fa-location-dot me-1"></i> Քարտեզ</button>
             </a>
